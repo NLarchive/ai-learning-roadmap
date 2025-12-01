@@ -1,425 +1,125 @@
 /**
- * Tree View Styles - Branch Timeline with Core Trunk
- * Central trunk with specialized career branches extending in different directions
+ * Tree View Styles
+ * Organic branching tree with SVG-based rendering
  */
 
 .tree-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  background: linear-gradient(135deg, #f9fafb 0%, #f0f2f5 100%);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .tree-header {
   padding: 1.5rem;
   background: white;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e5e7eb;
   text-align: center;
 }
 
 .tree-header h2 {
   margin: 0 0 0.5rem;
   font-size: 1.6rem;
-  color: #1a202c;
+  color: #1f2937;
   font-weight: 700;
 }
 
 .tree-header p {
   margin: 0;
-  color: #718096;
+  color: #6b7280;
   font-size: 0.95rem;
 }
 
-.branch-timeline {
+.tree-container {
   flex: 1;
   position: relative;
   overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 2rem;
 }
 
-/* SVG Timeline */
-.timeline-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.tree-svg {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 1;
+  max-width: 1400px;
 }
 
-/* Milestone bubbles (overlayed on SVG) */
-.milestones {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none; /* enable on each bubble individually */
+.tree-node {
+  transition: all 0.2s ease;
 }
 
-.milestone {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  pointer-events: auto; /* allow click */
-  text-decoration: none;
-  display: block;
+.tree-node:hover .node-circle {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
-.milestone-bubble {
-  width: var(--size);
-  height: var(--size);
-  border-radius: 999px;
+.tree-legend {
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid #e5e7eb;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: 700;
-  font-size: 0.85rem;
-  background: var(--color);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.14), inset 0 -8px 16px rgba(0,0,0,0.06);
-  border: 6px solid rgba(255,255,255,0.6);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
-}
-
-.milestone:hover .milestone-bubble {
-  transform: translateY(-6px) scale(1.06);
-  box-shadow: 0 18px 32px rgba(0,0,0,0.2);
-}
-
-.timeline-line {
-  stroke-linecap: round;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
-
-.branch-line {
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.station {
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
-  transition: r 0.3s;
-}
-
-.station.central {
-  filter: drop-shadow(0 4px 8px rgba(76, 175, 80, 0.3));
-}
-
-/* Branches Container */
-.branches-container {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
   gap: 2rem;
-  min-height: 400px;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #4b5563;
 }
 
-/* Branch Container */
-.branch-container {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  border-top: 4px solid var(--branch-color);
-  max-width: 280px;
-  cursor: pointer;
-}
-
-.branch-container:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transform: translateY(-4px);
-}
-
-.branch-container.expanded {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 22px 40px rgba(0,0,0,0.18);
-  border-color: var(--branch-color);
-  z-index: 6;
-}
-
-.branch-container.expanded .branch-title {
-  font-size: 1.16rem;
-}
-
-.branch-container.main-branch {
-  min-width: 350px;
-  border-top-width: 5px;
-}
-
-.branch-container.sub-branch {
-  min-width: 260px;
-}
-
-.branch-container.center {
-  order: 2;
-}
-
-.branch-container.up-left {
-  order: 1;
-}
-
-.branch-container.up-right {
-  order: 3;
-}
-
-.branch-container.down {
-  order: 4;
-  align-self: flex-end;
-}
-
-/* Branch Header */
-.branch-header {
+.tree-legend span {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-  align-items: flex-start;
-}
-
-.branch-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.branch-info {
-  flex: 1;
-}
-
-.branch-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.1rem;
-  color: var(--branch-color);
-  font-weight: 700;
-}
-
-.branch-count {
-  display: inline-block;
-  font-size: 0.75rem;
-  color: #718096;
-  background: var(--branch-light);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-/* Courses Grid */
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.trunk-courses {
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-}
-
-/* Course Node */
-.course-node {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem;
-  background: linear-gradient(135deg, var(--branch-color) 0%, var(--branch-light) 100%);
-  border-radius: 8px;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
 }
 
-.course-node:hover,
-.course-node.active {
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.tree-legend strong {
+  color: #1f2937;
 }
 
-.course-node::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.2);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.course-node:hover::before,
-.course-node.active::before {
-  opacity: 1;
-}
-
-.course-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: rgba(255,255,255,0.25);
-  border-radius: 50%;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.course-title {
-  font-size: 0.8rem;
-  text-align: center;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-.trunk-node {
-  min-height: 80px;
-  justify-content: center;
-}
-
-/* Course Card */
-.course-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem;
-  background: var(--branch-light);
-  border: 2px solid var(--branch-color);
+.tree-tooltip {
+  position: fixed;
+  display: none;
+  background: rgba(31, 41, 55, 0.95);
+  color: #f3f4f6;
+  padding: 0.75rem 1rem;
   border-radius: 6px;
-  color: var(--branch-color);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  min-height: 60px;
-}
-
-.course-card:hover,
-.course-card.active {
-  background: var(--branch-color);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
-
-.card-title {
-  display: block;
-  line-height: 1.3;
-}
-
-/* Stages Container */
-.stages-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.stage-group {
-  border-left: 3px solid var(--branch-color);
-  padding-left: 0.8rem;
-}
-
-.stage-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.stage-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: var(--branch-color);
-  color: white;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.stage-name {
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--branch-color);
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 280px;
 }
 
-.stage-courses {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 0.6rem;
-}
-
-/* Capstone Badge */
-.branch-capstone {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-  border-radius: 8px;
-  border-left: 4px solid #ff9800;
-}
-
-.capstone-badge {
+.tree-tooltip strong {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #ff6f00;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
+  color: #fff;
 }
 
-.branch-capstone p {
-  margin: 0;
-  font-size: 0.75rem;
-  color: #e65100;
-  line-height: 1.4;
+.tree-tooltip small {
+  display: block;
+  color: #d1d5db;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .branches-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .branch-container {
-    max-width: 100%;
-    min-width: auto;
-  }
-
-  .timeline-svg {
-    display: none;
-  }
-
-  .branch-timeline {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .tree-header h2 {
     font-size: 1.3rem;
   }
 
-  .branch-container {
+  .tree-container {
     padding: 1rem;
   }
 
-  .courses-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .tree-legend {
+    gap: 1rem;
+    padding: 0.75rem 1rem;
   }
 
-  .trunk-courses {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .branch-title {
-    font-size: 1rem;
+  .tree-legend span {
+    font-size: 0.8rem;
   }
 }
