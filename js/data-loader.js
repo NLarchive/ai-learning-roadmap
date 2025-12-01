@@ -70,7 +70,7 @@ const DataLoader = (() => {
    */
   async function getCoursesByCategory(category) {
     const data = await loadCourses();
-    return data.courses.filter(course => course.category === category);
+    return data.courses.filter(course => course.category === category).map(normalizeUrl);
   }
 
   /**
@@ -80,7 +80,7 @@ const DataLoader = (() => {
     const data = await loadCourses();
     return data.courses.filter(course => 
       course.career_paths && course.career_paths.includes(pathId)
-    );
+    ).map(normalizeUrl);
   }
 
   /**
@@ -90,7 +90,7 @@ const DataLoader = (() => {
     const data = await loadCourses();
     return data.courses.filter(course => 
       course.difficulty.toLowerCase() === difficulty.toLowerCase()
-    );
+    ).map(normalizeUrl);
   }
 
   /**
@@ -103,7 +103,7 @@ const DataLoader = (() => {
       course.title.toLowerCase().includes(lowerQuery) ||
       (course.description && course.description.toLowerCase().includes(lowerQuery)) ||
       (course.tags && course.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
-    );
+    ).map(normalizeUrl);
   }
 
   /**
@@ -111,7 +111,20 @@ const DataLoader = (() => {
    */
   async function getCourseById(id) {
     const data = await loadCourses();
-    return data.courses.find(course => course.id === id);
+    const course = data.courses.find(course => course.id === id);
+    return normalizeUrl(course);
+  }
+
+  /**
+   * Normalize course URL to absolute DeepLearning.AI URL
+   */
+  function normalizeUrl(course) {
+    if (!course) return course;
+    if (course.url && course.url.startsWith('/courses/')) {
+      // Convert /courses/course-id to https://learn.deeplearning.ai/courses/course-id
+      course.url = `https://learn.deeplearning.ai${course.url}`;
+    }
+    return course;
   }
 
   /**
@@ -157,7 +170,7 @@ const DataLoader = (() => {
           await traverse(prereqId);
         }
       }
-      chain.push(course);
+      chain.push(normalizeUrl(course));
     }
 
     await traverse(courseId);
@@ -174,7 +187,8 @@ const DataLoader = (() => {
 
     return course.recommended_next
       .map(id => data.courses.find(c => c.id === id))
-      .filter(Boolean);
+      .filter(Boolean)
+      .map(normalizeUrl);
   }
 
   /**
