@@ -65,6 +65,9 @@ const TreeView = (() => {
             <svg class="timeline-svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid meet">
               ${renderConnections(branches)}
             </svg>
+            <div class="milestones">
+              ${renderMilestones(branches)}
+            </div>
             <div class="branches-container">
               ${branches.map(branch => renderBranch(branch)).join('')}
             </div>
@@ -78,6 +81,33 @@ const TreeView = (() => {
       console.error('Error rendering tree:', error);
       container.innerHTML = Utils.createErrorMessage('Error', 'Failed to load tree.');
     }
+  }
+
+  // Render prominent milestone bubbles that sit above/below the main timeline
+  function renderMilestones() {
+    // positions are in viewBox coordinates (1200 x 600)
+    const nodes = [
+      { x: 210, y: 300, size: 18, color: '#ff6b6b', text: '2024', target: 'trunk' },
+      { x: 350, y: 220, size: 26, color: '#ff7f50', text: 'Intro', target: 'trunk' },
+      { x: 420, y: 150, size: 66, color: '#2ecc71', text: 'Foundations', target: 'builder' },
+      { x: 600, y: 300, size: 20, color: '#29b6f6', text: '2026', target: 'trunk' },
+      { x: 500, y: 420, size: 86, color: '#4fc3f7', text: 'Applied AI', target: 'builder' },
+      { x: 780, y: 300, size: 20, color: '#3f51b5', text: '2027', target: 'trunk' },
+      { x: 900, y: 200, size: 72, color: '#2196f3', text: 'Specialization', target: 'researcher' },
+      { x: 1040, y: 300, size: 26, color: '#ffb74d', text: '2029', target: 'trunk' },
+      { x: 840, y: 420, size: 66, color: '#9c27b0', text: 'Capstone', target: 'enterprise' }
+    ];
+
+    return nodes.map((n, idx) => {
+      const left = (n.x / 1200) * 100;
+      const top = (n.y / 600) * 100;
+      const size = n.size;
+      return `
+        <a href="#" class="milestone" data-idx="${idx}" data-target="${n.target || ''}" style="left:${left}%; top:${top}%; --size:${size}px; --color:${n.color};">
+          <div class="milestone-bubble">${n.text}</div>
+        </a>
+      `;
+    }).join('');
   }
 
   function renderConnections(branches) {
@@ -142,7 +172,7 @@ const TreeView = (() => {
     const containerClass = `branch-container ${align} ${isMainTrunk ? 'main-branch' : 'sub-branch'}`;
 
     return `
-      <div class="${containerClass}" style="--branch-color: ${color.primary}; --branch-light: ${color.light}">
+      <div class="${containerClass}" data-path="${id}" style="--branch-color: ${color.primary}; --branch-light: ${color.light}">
         <div class="branch-header">
           <span class="branch-icon">${icon}</span>
           <div class="branch-info">
@@ -235,6 +265,22 @@ const TreeView = (() => {
       branch.addEventListener('click', function(e) {
         if (e.target.closest('a')) return; // Allow links to work
         this.classList.toggle('expanded');
+      });
+    });
+
+    // Milestone bubble clicks should open relevant branch / scroll
+    document.querySelectorAll('.milestone').forEach(m => {
+      m.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = m.dataset.target;
+        if (!target) return;
+        const branch = container.querySelector(`.branch-container[data-path="${target}"]`);
+        if (!branch) return;
+
+        // collapse other branches and open target
+        document.querySelectorAll('.branch-container').forEach(b => b.classList.remove('expanded'));
+        branch.classList.toggle('expanded');
+        branch.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
       });
     });
   }

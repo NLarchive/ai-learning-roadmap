@@ -48,6 +48,43 @@
   z-index: 1;
 }
 
+/* Milestone bubbles (overlayed on SVG) */
+.milestones {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none; /* enable on each bubble individually */
+}
+
+.milestone {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto; /* allow click */
+  text-decoration: none;
+  display: block;
+}
+
+.milestone-bubble {
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+  background: var(--color);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.14), inset 0 -8px 16px rgba(0,0,0,0.06);
+  border: 6px solid rgba(255,255,255,0.6);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.milestone:hover .milestone-bubble {
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.2);
+}
+
 .timeline-line {
   stroke-linecap: round;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
@@ -95,6 +132,17 @@
 .branch-container:hover {
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
   transform: translateY(-4px);
+}
+
+.branch-container.expanded {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 22px 40px rgba(0,0,0,0.18);
+  border-color: var(--branch-color);
+  z-index: 6;
+}
+
+.branch-container.expanded .branch-title {
+  font-size: 1.16rem;
 }
 
 .branch-container.main-branch {
