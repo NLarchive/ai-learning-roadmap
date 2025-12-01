@@ -1,6 +1,7 @@
 # 🤖 AI Learning Roadmap
 
-> Interactive course visualization for DeepLearning.AI career paths
+> Interactive course visualization for DeepLearning.AI career paths on:
+https://nlarchive.github.io/ai-learning-roadmap/
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success)](https://nlarchive.github.io/ai-learning-roadmap/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
