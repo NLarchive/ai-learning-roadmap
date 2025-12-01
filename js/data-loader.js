@@ -39,7 +39,28 @@ const DataLoader = (() => {
     if (cache.courses) {
       return cache.courses;
     }
-    cache.courses = await fetchJSON(config.coursesPath);
+    const data = await fetchJSON(config.coursesPath);
+
+    // If the JSON includes a meta.base_url, normalize any root-relative course URLs
+    // so the rest of the app always gets absolute URLs.
+    try {
+      const baseUrl = data?.meta?.base_url || '';
+      if (baseUrl && Array.isArray(data.courses)) {
+        data.courses.forEach(course => {
+          if (course && course.url && course.url.startsWith('/')) {
+            // avoid double-prepending if someone already added full URL
+            if (!course.url.startsWith('http')) {
+              course.url = `${baseUrl}${course.url}`;
+            }
+          }
+        });
+      }
+    } catch (err) {
+      // Normalization failure shouldn't block data usage.
+      console.warn('Warning: failed to normalize course URLs', err);
+    }
+
+    cache.courses = data;
     return cache.courses;
   }
 
@@ -120,9 +141,12 @@ const DataLoader = (() => {
    */
   function normalizeUrl(course) {
     if (!course) return course;
-    if (course.url && course.url.startsWith('/courses/')) {
-      // Convert /courses/course-id to https://learn.deeplearning.ai/courses/course-id
-      course.url = `https://learn.deeplearning.ai${course.url}`;
+    // prefer base_url from the loaded courses file when present in cache
+    const baseUrl = cache.courses?.meta?.base_url || 'https://learn.deeplearning.ai';
+    if (course.url && course.url.startsWith('/')) {
+      if (!course.url.startsWith('http')) {
+        course.url = `${baseUrl}${course.url}`;
+      }
     }
     return course;
   }
