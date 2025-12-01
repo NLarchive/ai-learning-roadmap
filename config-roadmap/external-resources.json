@@ -1,0 +1,83 @@
+[
+  {
+    "id": "gap-advanced-math",
+    "title": "Advanced Mathematics",
+    "description": "Deep linear algebra, calculus, and probability theory",
+    "category": "fundamentals",
+    "career_paths": ["researcher"],
+    "recommended_resources": [
+      {
+        "name": "3Blue1Brown Linear Algebra",
+        "url": "https://www.3blue1brown.com/topics/linear-algebra",
+        "type": "video"
+      },
+      {
+        "name": "Khan Academy Calculus",
+        "url": "https://www.khanacademy.org/math/calculus-1",
+        "type": "course"
+      },
+      {
+        "name": "MIT OCW Mathematics for CS",
+        "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/",
+        "type": "course"
+      }
+    ]
+  },
+  {
+    "id": "gap-mlops-infrastructure",
+    "title": "MLOps Infrastructure",
+    "description": "CI/CD pipelines, infrastructure-as-code, cloud deployment",
+    "category": "model-building",
+    "career_paths": ["builder", "enterprise"],
+    "recommended_resources": [
+      {
+        "name": "MLOps Zoomcamp",
+        "url": "https://github.com/DataTalksClub/mlops-zoomcamp",
+        "type": "course"
+      },
+      {
+        "name": "AWS ML Engineering",
+        "url": "https://aws.amazon.com/training/learn-about/machine-learning/",
+        "type": "certification"
+      }
+    ]
+  },
+  {
+    "id": "gap-domain-projects",
+    "title": "Domain-Specific Projects",
+    "description": "Healthcare, finance, robotics AI applications",
+    "category": "applications",
+    "career_paths": ["builder", "researcher"],
+    "recommended_resources": [
+      {
+        "name": "Kaggle Competitions",
+        "url": "https://www.kaggle.com/competitions",
+        "type": "practice"
+      },
+      {
+        "name": "Papers With Code",
+        "url": "https://paperswithcode.com/",
+        "type": "research"
+      }
+    ]
+  },
+  {
+    "id": "gap-research-papers",
+    "title": "Latest Research",
+    "description": "Reading and implementing recent AI research papers",
+    "category": "research",
+    "career_paths": ["researcher"],
+    "recommended_resources": [
+      {
+        "name": "arXiv AI/ML",
+        "url": "https://arxiv.org/list/cs.AI/recent",
+        "type": "papers"
+      },
+      {
+        "name": "Hugging Face Papers",
+        "url": "https://huggingface.co/papers",
+        "type": "papers"
+      }
+    ]
+  }
+]

@@ -7,7 +7,7 @@
     <meta name="keywords" content="AI, Machine Learning, Deep Learning, Courses, Roadmap, Career Path">
     <meta name="author" content="Nicolas Larenas">
     <title>AI Learning Roadmap | DeepLearning.AI Courses</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     
@@ -45,6 +45,22 @@
                 <button class="tab-btn" data-tab="timeline" role="tab" aria-selected="false">
                     <span class="tab-icon">🚂</span>
                     <span>Timeline</span>
+                </button>
+                <button class="tab-btn" data-tab="heatmap" role="tab" aria-selected="false">
+                    <span class="tab-icon">📊</span>
+                    <span>Heatmap</span>
+                </button>
+                <button class="tab-btn" data-tab="sunburst" role="tab" aria-selected="false">
+                    <span class="tab-icon">🌞</span>
+                    <span>Sunburst</span>
+                </button>
+                <button class="tab-btn" data-tab="kanban" role="tab" aria-selected="false">
+                    <span class="tab-icon">📋</span>
+                    <span>Kanban</span>
+                </button>
+                <button class="tab-btn" data-tab="network" role="tab" aria-selected="false">
+                    <span class="tab-icon">🕸️</span>
+                    <span>Network</span>
                 </button>
             </nav>
         </div>
@@ -91,12 +107,44 @@
                 <span class="loading-text">Loading timeline...</span>
             </div>
         </section>
+
+        <!-- Heatmap View (NEW) -->
+        <section id="view-heatmap" class="view-container" data-view="heatmap" role="tabpanel" aria-label="Course Heatmap">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Loading heatmap...</span>
+            </div>
+        </section>
+
+        <!-- Sunburst View (NEW) -->
+        <section id="view-sunburst" class="view-container" data-view="sunburst" role="tabpanel" aria-label="Sunburst Chart">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Loading sunburst...</span>
+            </div>
+        </section>
+
+        <!-- Kanban View (NEW) -->
+        <section id="view-kanban" class="view-container" data-view="kanban" role="tabpanel" aria-label="Kanban Board">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Loading kanban board...</span>
+            </div>
+        </section>
+
+        <!-- Network View (NEW) -->
+        <section id="view-network" class="view-container" data-view="network" role="tabpanel" aria-label="Network Graph">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <span class="loading-text">Loading network graph...</span>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="app-footer">
         <p>
-            Built with ❤️ for AI learners | 
+            Built with ❤️ for AI learners |
             Data sourced from <a href="https://learn.deeplearning.ai" target="_blank" rel="noopener">DeepLearning.AI</a> |
             <a href="https://github.com/NLarchive/ai-learning-roadmap" target="_blank" rel="noopener">GitHub</a>
         </p>
@@ -106,7 +154,7 @@
     <script src="ui-tabs/shared/utils.js"></script>
     <script src="ui-tabs/shared/data-loader.js"></script>
     <script src="ui-tabs/shared/tab-navigation.js"></script>
-    
+
     <!-- View Components -->
     <script src="ui-tabs/index-view/view.js"></script>
     <script src="ui-tabs/cards-view/view.js"></script>
@@ -114,6 +162,12 @@
     <script src="ui-tabs/graph-view/view.js"></script>
     <script src="ui-tabs/timeline-view/view.js"></script>
     
+    <!-- New Visualization Components -->
+    <script src="ui-tabs/heatmap-view/view.js"></script>
+    <script src="ui-tabs/sunburst-view/view.js"></script>
+    <script src="ui-tabs/kanban-view/view.js"></script>
+    <script src="ui-tabs/network-view/view.js"></script>
+
     <!-- Main Application -->
     <script src="js/app.js"></script>
 </body>

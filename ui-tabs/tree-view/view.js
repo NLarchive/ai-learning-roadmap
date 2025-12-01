@@ -85,18 +85,27 @@ const TreeView = (() => {
     const branchSpacing = availableWidth / mainBranches.length;
 
     // Level 0: Trunk
-    const trunkCourses = paths.trunk.courses.sort((a, b) => a.order - b.order);
+      // Level 0: Trunk - flatten trunk stages into a linear set of trunk courses
+      let trunkCourses = [];
+      if (paths.trunk && Array.isArray(paths.trunk.stages)) {
+        trunkCourses = paths.trunk.stages.flatMap(stage => stage.courses || []);
+      }
+      // Map to actual course objects when available and keep stable ordering
+      trunkCourses = trunkCourses
+        .map(id => allCourses.find(c => c.id === id))
+        .filter(Boolean);
+
     let lastTrunkNode = null;
-    trunkCourses.forEach((courseTrunk, index) => {
-      const y = config.height - config.padding.bottom - (index * 40); // Stack trunk courses tightly
-      const node = {
-        id: courseTrunk.id,
-        level: 0,
-        x: config.width / 2,
-        y: y,
-        path: 'trunk',
-        order: courseTrunk.order
-      };
+      trunkCourses.forEach((courseTrunk, index) => {
+        const y = config.height - config.padding.bottom - (index * 40);
+        const node = {
+          id: courseTrunk.id,
+          level: 0,
+          x: config.width / 2,
+          y: y,
+          path: 'trunk',
+          order: courseTrunk.order || index + 1
+        };
       nodes.push(node);
       if (lastTrunkNode) {
         edges.push({ source: lastTrunkNode, target: node, path: 'trunk' });

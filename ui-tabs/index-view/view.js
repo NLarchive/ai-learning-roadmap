@@ -39,11 +39,13 @@ const TextIndexView = (() => {
     container.innerHTML = Utils.createLoadingSpinner('Loading courses...');
 
     try {
-      data = await DataLoader.loadCourses();
+      // Use processed data so we have courses + categories + stats in one place
+      data = await DataLoader.loadProcessedData();
       const courses = data.courses || [];
       const categories = data.categories || {};
 
-      // Group courses by category
+      // Group courses by category (ensure categories include all defined
+      // categories from the normalized dataset)
       const grouped = groupByCategory(courses, categories);
 
       container.innerHTML = `

@@ -1,0 +1,127 @@
+{
+  "trunk": {
+    "id": "trunk",
+    "name": "Common Core",
+    "description": "Essential foundation courses required for all AI career paths",
+    "color": "#4CAF50",
+    "icon": "🌳",
+    "stages": [
+      {
+        "name": "AI Literacy",
+        "description": "Understanding AI concepts and possibilities",
+        "courses": ["ai-for-everyone", "generative-ai-for-everyone"]
+      },
+      {
+        "name": "Core Coding",
+        "description": "Programming skills with AI assistance",
+        "courses": ["ai-python-for-beginners", "vibe-coding-101", "claude-code"]
+      },
+      {
+        "name": "Foundational Theory",
+        "description": "Technical understanding of LLMs",
+        "courses": ["generative-ai-with-llms"]
+      }
+    ],
+    "capstone": null
+  },
+  "builder": {
+    "id": "builder",
+    "name": "AI Product Engineer",
+    "description": "Building apps, RAG, and APIs. Minimal math, maximum coding.",
+    "color": "#2196F3",
+    "icon": "🔧",
+    "stages": [
+      {
+        "name": "Prompting",
+        "description": "Master prompt engineering techniques",
+        "courses": ["chatgpt-prompt-engineering", "reasoning-with-o1"]
+      },
+      {
+        "name": "App Logic",
+        "description": "Build AI application logic",
+        "courses": ["functions-tools-agents-langchain", "langchain-chat-with-data"]
+      },
+      {
+        "name": "RAG Stack",
+        "description": "Retrieval-Augmented Generation systems",
+        "courses": ["vector-databases-applications", "building-advanced-rag", "knowledge-graphs-rag"]
+      },
+      {
+        "name": "Agentic Systems",
+        "description": "Multi-agent and autonomous systems",
+        "courses": ["multi-ai-agent-systems-crewai", "building-ai-voice-agents", "ai-agents-langgraph"]
+      },
+      {
+        "name": "Deployment",
+        "description": "Production deployment and operations",
+        "courses": ["llmops", "efficiently-serving-llms"]
+      }
+    ],
+    "capstone": "Build a deployable RAG app with vector DB + agent and CI for evaluation"
+  },
+  "researcher": {
+    "id": "researcher",
+    "name": "Model Architect",
+    "description": "Math, training, architecture, and fine-tuning. Deep theory.",
+    "color": "#9C27B0",
+    "icon": "🔬",
+    "stages": [
+      {
+        "name": "Math & ML Foundations",
+        "description": "Mathematical and ML theory foundations",
+        "courses": ["mathematics-for-ml", "machine-learning-specialization", "deep-learning-specialization"]
+      },
+      {
+        "name": "Architecture Deep Dive",
+        "description": "Understanding model architectures",
+        "courses": ["pytorch-for-deep-learning", "attention-in-transformers", "how-diffusion-models-work"]
+      },
+      {
+        "name": "Training Pipeline",
+        "description": "Pre-training and fine-tuning techniques",
+        "courses": ["pretraining-llms", "finetuning-llms", "rlhf", "reinforcement-finetuning-grpo"]
+      },
+      {
+        "name": "Optimization & Compression",
+        "description": "Model optimization and quantization",
+        "courses": ["quantization-fundamentals", "quantization-in-depth", "efficiently-serving-llms"]
+      },
+      {
+        "name": "Evaluation",
+        "description": "Testing and evaluation methods",
+        "courses": ["automated-testing-llmops", "evaluating-ai-agents"]
+      }
+    ],
+    "capstone": "Pretrain/fine-tune a small model, evaluate quantization, and deploy for inference"
+  },
+  "enterprise": {
+    "id": "enterprise",
+    "name": "Enterprise AI Architect",
+    "description": "Security, Governance, Federation, and Integration at scale.",
+    "color": "#FF9800",
+    "icon": "🏢",
+    "stages": [
+      {
+        "name": "Security Core",
+        "description": "AI security fundamentals",
+        "courses": ["red-teaming-llm-applications", "quality-safety-llm-applications", "ai-safety-guardrails"]
+      },
+      {
+        "name": "Privacy Tech",
+        "description": "Privacy-preserving AI techniques",
+        "courses": ["intro-federated-learning", "federated-finetuning-llms"]
+      },
+      {
+        "name": "Integration Patterns",
+        "description": "Enterprise integration approaches",
+        "courses": ["serverless-agentic-workflows-bedrock", "semantic-kernel-plugins", "llmops"]
+      },
+      {
+        "name": "Ethics & Sustainability",
+        "description": "Responsible AI practices",
+        "courses": ["ai-for-good", "carbon-aware-computing"]
+      }
+    ],
+    "capstone": "Design a secure LLM-based enterprise system with governance controls"
+  }
+}

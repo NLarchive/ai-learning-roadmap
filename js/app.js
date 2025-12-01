@@ -11,7 +11,11 @@ const App = (() => {
     cards: null,
     tree: null,
     graph: null,
-    timeline: null
+    timeline: null,
+    heatmap: null,
+    sunburst: null,
+    kanban: null,
+    network: null
   };
 
   // Initialization state
@@ -35,10 +39,14 @@ const App = (() => {
         cards: document.getElementById('view-cards'),
         tree: document.getElementById('view-tree'),
         graph: document.getElementById('view-graph'),
-        timeline: document.getElementById('view-timeline')
+        timeline: document.getElementById('view-timeline'),
+        heatmap: document.getElementById('view-heatmap'),
+        sunburst: document.getElementById('view-sunburst'),
+        kanban: document.getElementById('view-kanban'),
+        network: document.getElementById('view-network')
       };
 
-      // Initialize views with their containers
+      // Initialize core views
       if (containers.index && typeof TextIndexView !== 'undefined') {
         await TextIndexView.init(containers.index);
         views.index = TextIndexView;
@@ -64,6 +72,31 @@ const App = (() => {
         views.timeline = TimelineView;
       }
 
+      // Initialize NEW visualization views
+      if (containers.heatmap && typeof HeatmapView !== 'undefined') {
+        await HeatmapView.init(containers.heatmap);
+        views.heatmap = HeatmapView;
+        console.log('📊 Heatmap view initialized');
+      }
+
+      if (containers.sunburst && typeof SunburstView !== 'undefined') {
+        await SunburstView.init(containers.sunburst);
+        views.sunburst = SunburstView;
+        console.log('🌞 Sunburst view initialized');
+      }
+
+      if (containers.kanban && typeof KanbanView !== 'undefined') {
+        await KanbanView.init(containers.kanban);
+        views.kanban = KanbanView;
+        console.log('📋 Kanban view initialized');
+      }
+
+      if (containers.network && typeof NetworkView !== 'undefined') {
+        await NetworkView.init(containers.network);
+        views.network = NetworkView;
+        console.log('🕸️ Network view initialized');
+      }
+
       // Register view renderers with tab navigation
       TabNavigation.registerRenderer('index', async () => {
         if (views.index) await views.index.render();
@@ -85,13 +118,30 @@ const App = (() => {
         if (views.timeline) await views.timeline.render();
       });
 
+      // Register NEW view renderers
+      TabNavigation.registerRenderer('heatmap', async () => {
+        if (views.heatmap) await views.heatmap.render();
+      });
+
+      TabNavigation.registerRenderer('sunburst', async () => {
+        if (views.sunburst) await views.sunburst.render();
+      });
+
+      TabNavigation.registerRenderer('kanban', async () => {
+        if (views.kanban) await views.kanban.render();
+      });
+
+      TabNavigation.registerRenderer('network', async () => {
+        if (views.network) await views.network.render();
+      });
+
       // Render default view (index)
       if (views.index) {
         await views.index.render();
       }
 
       initialized = true;
-      console.log('✅ App initialized successfully');
+      console.log('✅ App initialized successfully with', Object.keys(views).filter(v => views[v]).length, 'views');
 
     } catch (error) {
       console.error('❌ Error initializing app:', error);
@@ -121,7 +171,7 @@ const App = (() => {
   async function refreshData() {
     DataLoader.clearCache();
     const currentView = TabNavigation.getCurrentView();
-    if (views[currentView]) {
+    if (views[currentView] && views[currentView].refresh) {
       await views[currentView].refresh();
     }
   }
@@ -133,11 +183,19 @@ const App = (() => {
     return views[viewId];
   }
 
+  /**
+   * Get all registered views
+   */
+  function getAllViews() {
+    return Object.keys(views).filter(v => views[v]);
+  }
+
   // Public API
   return {
     init,
     refreshData,
-    getView
+    getView,
+    getAllViews
   };
 })();
 

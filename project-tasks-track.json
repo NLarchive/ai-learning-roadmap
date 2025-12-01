@@ -1,10 +1,10 @@
 {
   "meta": {
     "project_name": "AI Learning Roadmap",
-    "version": "2.1.0",
+    "version": "3.0.0",
     "created": "2025-11-30",
-    "last_updated": "2025-11-30",
-    "description": "GitHub Pages static site for displaying AI courses in multiple visualization formats with modular component architecture"
+    "last_updated": "2025-12-01",
+    "description": "GitHub Pages static site for displaying AI courses in multiple visualization formats with modular component architecture and normalized data management"
   },
   "priority_levels": {
     "P1": "Critical - Must complete",
@@ -221,10 +221,12 @@
       "title": "Course Progress Tracking",
       "description": "Add ability to mark courses as completed with localStorage persistence",
       "priority": "P3",
-      "status": "pending",
+      "status": "completed",
       "created": "2025-11-30",
-      "assignee": "user",
-      "tags": ["feature", "javascript"]
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["feature", "javascript"],
+      "notes": "Implemented in Kanban view with localStorage persistence"
     },
     {
       "id": "TASK-020",
@@ -258,9 +260,131 @@
       "completed_date": "2025-11-30",
       "assignee": "copilot",
       "tags": ["cleanup", "refactor"]
+    },
+    {
+      "id": "TASK-023",
+      "title": "Normalize Database Structure",
+      "description": "Split data into courses.json, categories.json, paths.json, external-resources.json with schema documentation",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["data", "architecture", "refactor"]
+    },
+    {
+      "id": "TASK-024",
+      "title": "Enhanced Data Loader v2.0",
+      "description": "Upgrade DataLoader with loadProcessedData(), graph building, skills/tags/partners APIs",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["javascript", "data", "api"]
+    },
+    {
+      "id": "TASK-025",
+      "title": "Heatmap View Component",
+      "description": "Pure vanilla CSS Grid heatmap showing course density by category vs difficulty/duration/partner",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["view", "component", "vanilla-js"]
+    },
+    {
+      "id": "TASK-026",
+      "title": "Sunburst View Component",
+      "description": "D3.js hierarchical radial sunburst chart showing paths->stages->courses",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["view", "component", "d3"]
+    },
+    {
+      "id": "TASK-027",
+      "title": "Kanban View Component",
+      "description": "Trello-style board with drag-and-drop, progress tracking, and localStorage persistence",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["view", "component", "vanilla-js"]
+    },
+    {
+      "id": "TASK-028",
+      "title": "Network View Component",
+      "description": "vis.js force-directed network graph showing course dependencies and recommendations",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["view", "component", "vis-js"]
+    },
+    {
+      "id": "TASK-029",
+      "title": "Update App Entry Point",
+      "description": "Add initialization for 4 new view components (heatmap, sunburst, kanban, network)",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["javascript", "integration"]
+    },
+    {
+      "id": "TASK-030",
+      "title": "Schema Documentation",
+      "description": "Create schema.json documenting all data entities, relationships, and field types",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-12-01",
+      "completed_date": "2025-12-01",
+      "assignee": "copilot",
+      "tags": ["documentation", "data"]
     }
   ],
-  "completed_count": 19,
-  "pending_count": 3,
-  "in_progress_count": 0
+  "completed_count": 27,
+  "pending_count": 2,
+  "in_progress_count": 0,
+  "architecture": {
+    "data_layer": {
+      "description": "Normalized JSON database in config-roadmap/",
+      "files": [
+        "courses.json - All course data with full metadata",
+        "categories.json - Category definitions with colors and subcategories",
+        "paths.json - Career paths with stages and course references",
+        "external-resources.json - External learning resources",
+        "schema.json - Data schema documentation"
+      ]
+    },
+    "shared_modules": {
+      "description": "Shared utilities in ui-tabs/shared/",
+      "files": [
+        "data-loader.js - Data loading, caching, and processing API",
+        "tab-navigation.js - View switching and URL hash support",
+        "utils.js - Common helper functions"
+      ]
+    },
+    "view_components": {
+      "description": "Independent view modules in ui-tabs/*/",
+      "views": [
+        "index-view - Categorized text list",
+        "cards-view - Responsive card grid",
+        "tree-view - Organic tree visualization",
+        "graph-view - Radial mind map",
+        "timeline-view - Train station timeline",
+        "heatmap-view - CSS Grid heatmap (vanilla)",
+        "sunburst-view - D3.js radial hierarchy",
+        "kanban-view - Drag-drop board with progress",
+        "network-view - vis.js force-directed graph"
+      ]
+    }
+  }
 }

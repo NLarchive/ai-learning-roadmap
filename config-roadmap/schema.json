@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Roadmap Database Schema",
+  "description": "Schema definition for the AI Learning Roadmap data structure",
+  "version": "2.0.0",
+  "last_updated": "2025-12-01",
+  
+  "entities": {
+    "course": {
+      "description": "A single learning course/module",
+      "required_fields": [
+        "id",
+        "title",
+        "description",
+        "url",
+        "difficulty",
+        "duration_hours",
+        "category",
+        "career_paths"
+      ],
+      "optional_fields": [
+        "subcategory",
+        "skills_gained",
+        "prerequisites",
+        "recommended_next",
+        "tags",
+        "partner",
+        "order",
+        "is_external_recommended",
+        "external_note"
+      ],
+      "field_types": {
+        "id": "string (kebab-case identifier)",
+        "title": "string",
+        "description": "string (max 200 chars)",
+        "url": "string (relative path from base_url)",
+        "difficulty": "enum: Beginner | Intermediate | Advanced",
+        "duration_hours": "number (decimal allowed)",
+        "category": "string (references categories.id)",
+        "subcategory": "string",
+        "career_paths": "array<string> (references career_paths.id)",
+        "skills_gained": "array<string>",
+        "prerequisites": "array<string> (references course.id)",
+        "recommended_next": "array<string> (references course.id)",
+        "tags": "array<string>",
+        "partner": "string",
+        "order": "number (display order)"
+      }
+    },
+    
+    "category": {
+      "description": "Course categorization for organization",
+      "required_fields": ["id", "name", "icon", "description"],
+      "field_types": {
+        "id": "string (kebab-case)",
+        "name": "string (display name)",
+        "icon": "string (emoji)",
+        "description": "string"
+      }
+    },
+    
+    "career_path": {
+      "description": "Learning path for specific career goals",
+      "required_fields": ["id", "name", "description", "color", "icon", "stages"],
+      "field_types": {
+        "id": "string (trunk | builder | researcher | enterprise)",
+        "name": "string (display name)",
+        "description": "string",
+        "color": "string (hex color)",
+        "icon": "string (emoji)",
+        "stages": "array<stage>",
+        "capstone": "string (optional capstone project description)"
+      }
+    },
+    
+    "stage": {
+      "description": "A stage within a career path",
+      "required_fields": ["name", "courses"],
+      "field_types": {
+        "name": "string (stage name)",
+        "courses": "array<string> (references course.id)"
+      }
+    },
+    
+    "external_resource": {
+      "description": "External learning resources to fill gaps",
+      "required_fields": ["id", "title", "description", "category", "career_paths", "recommended_resources"],
+      "field_types": {
+        "id": "string",
+        "title": "string",
+        "description": "string",
+        "category": "string",
+        "career_paths": "array<string>",
+        "recommended_resources": "array<{name: string, url: string}>"
+      }
+    }
+  },
+  
+  "relationships": {
+    "course_to_category": "many-to-one",
+    "course_to_career_paths": "many-to-many",
+    "course_prerequisites": "many-to-many (self-referential)",
+    "course_recommended_next": "many-to-many (self-referential)",
+    "career_path_stages_to_courses": "many-to-many"
+  },
+  
+  "indexes": {
+    "courses_by_id": "Primary lookup for courses",
+    "courses_by_category": "Filter courses by category",
+    "courses_by_difficulty": "Filter courses by difficulty level",
+    "courses_by_career_path": "Filter courses by career path",
+    "courses_by_partner": "Group courses by partner organization"
+  }
+}
