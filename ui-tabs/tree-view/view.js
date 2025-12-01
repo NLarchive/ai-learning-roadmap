@@ -1,31 +1,29 @@
 /**
  * Tree View Component
- * Organic branching tree visualization - courses organized by career path stages
- * Root (trunk) at bottom, branches expanding upward with curved connectors
+ * Renders an organic, branching tree visualization based on the provided image.
+ * The structure flows from a common trunk upwards into specialized branches.
  */
-
 const TreeView = (() => {
   let container = null;
   let coursesMap = new Map();
   let careerPaths = null;
 
+  // Configuration for the tree layout and appearance, inspired by the image
   const config = {
-    svgWidth: 1400,
-    svgHeight: 900,
-    nodeRadius: 16,
-    levelHeight: 120,
-    branchColor: '#8b6f47',
+    width: 1400,
+    height: 1000,
+    padding: { top: 50, bottom: 50, left: 20, right: 20 },
+    levelHeight: 110,
+    trunkStrokeWidth: 40,
+    branchStrokeWidth: 20,
+    twigStrokeWidth: 8,
+    nodeRadius: 8,
     colors: {
-      trunk: '#4CAF50',
-      builder: '#2196F3',
-      researcher: '#9C27B0',
-      enterprise: '#FF9800'
-    },
-    icons: {
-      trunk: '🌳',
-      builder: '🔧',
-      researcher: '🔬',
-      enterprise: '🏢'
+      trunk: 'var(--trunk, #4CAF50)',
+      builder: 'var(--builder, #2196F3)',
+      researcher: 'var(--researcher, #9C27B0)',
+      enterprise: 'var(--enterprise, #FF9800)',
+      branch: '#8d6e63' // A woody brown for the branches
     }
   };
 
@@ -51,243 +49,168 @@ const TreeView = (() => {
       careerPaths = await DataLoader.loadCareerPaths();
       const coursesData = await DataLoader.loadCourses();
       coursesData.courses.forEach(c => coursesMap.set(c.id, c));
-
-      // Build tree structure from all career paths
-      const treeData = buildTreeFromPaths(careerPaths, coursesData.courses);
+      
+      const treeData = buildTreeLayout(careerPaths, coursesData.courses);
 
       container.innerHTML = `
-        <div class="tree-wrapper">
-          <div class="tree-header">
+        <div class="tree-wrapper-dark">
+          <div class="tree-header-dark">
             <h2>🌳 AI Learning Roadmap</h2>
-            <p>Core trunk with specialized branches — each number represents a course step</p>
+            <p>An organic representation of the AI curriculum, from foundational trunk to specialized branches.</p>
           </div>
-          <div class="tree-container">
-            <svg id="tree-svg" class="tree-svg" viewBox="0 0 ${config.svgWidth} ${config.svgHeight}" preserveAspectRatio="xMidYMid meet"></svg>
-          </div>
-          <div class="tree-legend">
-            <span><strong>🌳 Trunk</strong> = Common Core</span>
-            <span><strong>🔧 Builder</strong> = AI Product Engineer</span>
-            <span><strong>🔬 Researcher</strong> = Model Architect</span>
-            <span><strong>🏢 Enterprise</strong> = Enterprise AI</span>
+          <div class="tree-svg-container-dark">
+            <svg id="tree-svg" viewbox="0 0 ${config.width} ${config.height}" preserveAspectRatio="xMidYMin meet"></svg>
+            <div id="tree-tooltip" class="tree-tooltip-dark"></div>
           </div>
         </div>
       `;
 
-      renderTreeSvg(treeData);
+      renderSvgTree(treeData);
       attachEventListeners();
 
     } catch (error) {
-      console.error('Error rendering tree:', error);
-      container.innerHTML = Utils.createErrorMessage('Error', 'Failed to load tree.');
+      console.error('Error rendering tree view:', error);
+      container.innerHTML = Utils.createErrorMessage('Error', 'Could not grow the knowledge tree.');
     }
   }
 
   /**
-   * Build tree structure from career path stages
+   * Builds the entire tree layout with node positions.
    */
-  function buildTreeFromPaths(paths, courses) {
-    const nodes = [];
-    let nodeId = 0;
+  function buildTreeLayout(paths, allCourses) {
+    let nodes = [];
+    let edges = [];
+    const mainBranches = Object.keys(paths).filter(k => k !== 'trunk' && k !== 'additional_paths');
+    const availableWidth = config.width - config.padding.left - config.padding.right;
+    const branchSpacing = availableWidth / mainBranches.length;
 
-    // Process each career path (trunk, builder, researcher, enterprise)
-    Object.entries(paths).forEach(([pathKey, pathData]) => {
-      if (typeof pathData !== 'object' || !pathData.courses) {
-        return;
+    // Level 0: Trunk
+    const trunkCourses = paths.trunk.courses.sort((a, b) => a.order - b.order);
+    let lastTrunkNode = null;
+    trunkCourses.forEach((courseTrunk, index) => {
+      const y = config.height - config.padding.bottom - (index * 40); // Stack trunk courses tightly
+      const node = {
+        id: courseTrunk.id,
+        level: 0,
+        x: config.width / 2,
+        y: y,
+        path: 'trunk',
+        order: courseTrunk.order
+      };
+      nodes.push(node);
+      if (lastTrunkNode) {
+        edges.push({ source: lastTrunkNode, target: node, path: 'trunk' });
       }
-
-      // Handle trunk (direct courses array)
-      if (pathKey === 'trunk' && Array.isArray(pathData.courses)) {
-        pathData.courses.forEach((courseItem, idx) => {
-          const courseId = courseItem.id || courseItem;
-          const courseObj = courses.find(c => c.id === courseId);
-          if (courseObj) {
-            nodes.push({
-              id: nodeId++,
-              courseId: courseId,
-              title: courseObj.title,
-              order: idx + 1,
-              stage: 'Trunk',
-              pathKey: pathKey,
-              level: 0,
-              x: 0,
-              y: 0
-            });
-          }
-        });
-        return;
-      }
-
-      // Process stages in a career path
-      if (Array.isArray(pathData.stages)) {
-        pathData.stages.forEach((stage, stageIdx) => {
-          (stage.courses || []).forEach((courseId, courseIdx) => {
-            const courseObj = courses.find(c => c.id === courseId);
-            if (courseObj) {
-              nodes.push({
-                id: nodeId++,
-                courseId: courseId,
-                title: courseObj.title,
-                order: courseIdx + 1,
-                stage: stage.name,
-                pathKey: pathKey,
-                level: stageIdx + 1,
-                x: 0,
-                y: 0
-              });
-            }
-          });
-        });
-      }
+      lastTrunkNode = node;
     });
 
-    // Position nodes in a tree layout
-    positionNodes(nodes);
+    // Levels 1+: Main Branches and Stages
+    mainBranches.forEach((pathKey, branchIndex) => {
+      const branchCenterX = config.padding.left + (branchIndex * branchSpacing) + (branchSpacing / 2);
+      let lastStageNode = lastTrunkNode; // Connect first stage to the top of the trunk
 
-    return { nodes };
-  }
+      paths[pathKey].stages.forEach((stage, stageIndex) => {
+        const level = stageIndex + 1;
+        const stageCourses = stage.courses;
+        
+        stageCourses.forEach((courseId, courseIndex) => {
+          const course = allCourses.find(c => c.id === courseId);
+          if (!course) return;
 
-  /**
-   * Position nodes in tree layers (from bottom/trunk upward)
-   */
-  function positionNodes(nodes) {
-    // Group by level
-    const levels = {};
-    nodes.forEach(node => {
-      if (!levels[node.level]) levels[node.level] = [];
-      levels[node.level].push(node);
-    });
+          // Distribute courses horizontally within their branch's allocated space
+          const courseX = branchCenterX + (courseIndex - (stageCourses.length - 1) / 2) * 60;
+          const y = config.height - config.padding.bottom - (level * config.levelHeight);
+          
+          const node = { id: courseId, level, x: courseX, y, path: pathKey, order: courseIndex + 1 };
+          nodes.push(node);
 
-    const maxLevel = Math.max(...Object.keys(levels).map(Number), 0);
-
-    // Position nodes
-    Object.entries(levels).forEach(([level, levelNodes]) => {
-      const levelNum = parseInt(level);
-      const y = config.svgHeight - (levelNum * config.levelHeight + 80);
-
-      levelNodes.forEach((node, idx) => {
-        const totalInLevel = levelNodes.length;
-        const spacing = config.svgWidth / (totalInLevel + 1);
-        node.x = spacing * (idx + 1);
-        node.y = y;
+          // Connect to the previous level
+          // Simple connection: connect to the first node of the previous stage in the same branch, or the trunk.
+          let parentNode = nodes.find(n => n.level === level - 1 && n.path === pathKey) || lastStageNode;
+          edges.push({ source: parentNode, target: node, path: pathKey });
+        });
       });
     });
-  }
 
+    return { nodes, edges };
+  }
+  
   /**
-   * Render tree into SVG
+   * Renders the tree data into the SVG element.
    */
-  function renderTreeSvg({ nodes }) {
+  function renderSvgTree({ nodes, edges }) {
     const svg = document.getElementById('tree-svg');
     if (!svg) return;
 
-    // Group nodes by level to draw branches between levels
-    const levels = {};
-    nodes.forEach(node => {
-      if (!levels[node.level]) levels[node.level] = [];
-      levels[node.level].push(node);
+    // Render Edges (Branches)
+    edges.forEach(edge => {
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      const d = `M ${edge.source.x} ${edge.source.y} C ${edge.source.x} ${edge.source.y - config.levelHeight / 2}, ${edge.target.x} ${edge.target.y + config.levelHeight / 2}, ${edge.target.x} ${edge.target.y}`;
+      path.setAttribute('d', d);
+      path.classList.add('tree-branch');
+      path.setAttribute('stroke', config.colors.branch);
+      
+      // Vary stroke width based on level
+      const strokeWidth = Math.max(2, config.trunkStrokeWidth / (Math.pow(edge.target.level, 1.5) + 1));
+      path.setAttribute('stroke-width', strokeWidth);
+      
+      svg.appendChild(path);
     });
 
-    // Draw curved connectors between levels
-    const levelKeys = Object.keys(levels).map(Number).sort((a, b) => a - b);
-    for (let i = 0; i < levelKeys.length - 1; i++) {
-      const currentLevel = levels[levelKeys[i]];
-      const nextLevel = levels[levelKeys[i + 1]];
-
-      // Connect nodes with curved paths (same career path)
-      currentLevel.forEach(fromNode => {
-        nextLevel.forEach(toNode => {
-          if (fromNode.pathKey === toNode.pathKey) {
-            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            const curveY = fromNode.y - (config.levelHeight * 0.4);
-            const d = `M ${fromNode.x} ${fromNode.y} C ${fromNode.x} ${curveY}, ${toNode.x} ${curveY}, ${toNode.x} ${toNode.y}`;
-            path.setAttribute('d', d);
-            path.setAttribute('stroke', config.colors[toNode.pathKey]);
-            path.setAttribute('stroke-width', '3');
-            path.setAttribute('fill', 'none');
-            path.setAttribute('stroke-linecap', 'round');
-            path.setAttribute('opacity', '0.5');
-            svg.appendChild(path);
-          }
-        });
-      });
-    }
-
-    // Draw nodes (courses)
+    // Render Nodes (Courses with numbers)
     nodes.forEach(node => {
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       g.classList.add('tree-node');
       g.setAttribute('transform', `translate(${node.x}, ${node.y})`);
-      g.dataset.courseId = node.courseId;
-      g.dataset.title = node.title;
-      g.style.cursor = 'pointer';
+      g.dataset.courseId = node.id;
 
-      // Circle background
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('r', config.nodeRadius);
-      circle.setAttribute('fill', config.colors[node.pathKey]);
-      circle.setAttribute('stroke', 'white');
-      circle.setAttribute('stroke-width', '2');
-      circle.setAttribute('opacity', '0.85');
-      circle.classList.add('node-circle');
-      g.appendChild(circle);
-
-      // Text: order number
+      // Add a number label next to the node, like in the image
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      text.setAttribute('x', '0');
-      text.setAttribute('y', '0');
-      text.setAttribute('text-anchor', 'middle');
-      text.setAttribute('dy', '0.3em');
-      text.setAttribute('font-size', '14');
-      text.setAttribute('font-weight', 'bold');
-      text.setAttribute('fill', 'white');
-      text.setAttribute('pointer-events', 'none');
       text.textContent = node.order;
+      text.setAttribute('x', -15);
+      text.setAttribute('y', 5);
+      text.classList.add('tree-node-label');
+      text.style.fill = config.colors[node.path];
       g.appendChild(text);
 
-      g.addEventListener('mouseenter', function() {
-        circle.setAttribute('r', config.nodeRadius + 4);
-        circle.setAttribute('opacity', '1');
-      });
-
-      g.addEventListener('mouseleave', function() {
-        circle.setAttribute('r', config.nodeRadius);
-        circle.setAttribute('opacity', '0.85');
-      });
-
-      g.addEventListener('click', () => {
-        const course = coursesMap.get(node.courseId);
-        if (course && course.url) {
-          window.open(course.url, '_blank');
-        }
-      });
-
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('r', config.nodeRadius);
+      circle.setAttribute('fill', config.colors.branch);
+      circle.setAttribute('stroke', config.colors[node.path]);
+      g.appendChild(circle);
+      
       svg.appendChild(g);
     });
   }
 
   function attachEventListeners() {
-    const svg = document.getElementById('tree-svg');
-    if (!svg) return;
+    const tooltip = document.getElementById('tree-tooltip');
+    const svgContainer = document.querySelector('.tree-svg-container-dark');
+    if (!tooltip || !svgContainer) return;
 
-    // Tooltip on hover
-    const tooltip = document.createElement('div');
-    tooltip.classList.add('tree-tooltip');
-    container.appendChild(tooltip);
+    document.querySelectorAll('.tree-node').forEach(nodeEl => {
+      const courseId = nodeEl.dataset.courseId;
+      const course = coursesMap.get(courseId);
 
-    document.querySelectorAll('.tree-node').forEach(node => {
-      node.addEventListener('mouseenter', (e) => {
-        const courseId = node.dataset.courseId;
-        const course = coursesMap.get(courseId);
-        if (course) {
-          tooltip.innerHTML = `<strong>${course.title}</strong><br><small>${course.difficulty} • ${course.duration_hours}h</small>`;
-          tooltip.style.display = 'block';
-          tooltip.style.left = e.pageX + 10 + 'px';
-          tooltip.style.top = e.pageY + 10 + 'px';
-        }
+      nodeEl.addEventListener('mouseenter', (e) => {
+        if (!course) return;
+        nodeEl.classList.add('active');
+        tooltip.innerHTML = `<strong>${course.title}</strong><span>${course.difficulty} | ${course.duration_hours}h</span>`;
+        tooltip.style.borderColor = config.colors[course.career_paths[0]] || config.colors.branch;
+        tooltip.classList.add('visible');
+        
+        const rect = svgContainer.getBoundingClientRect();
+        tooltip.style.left = `${e.clientX - rect.left + 20}px`;
+        tooltip.style.top = `${e.clientY - rect.top - tooltip.offsetHeight - 10}px`;
       });
 
-      node.addEventListener('mouseleave', () => {
-        tooltip.style.display = 'none';
+      nodeEl.addEventListener('mouseleave', () => {
+        nodeEl.classList.remove('active');
+        tooltip.classList.remove('visible');
+      });
+
+      nodeEl.addEventListener('click', () => {
+        if (course && course.url) window.open(course.url, '_blank');
       });
     });
   }
@@ -300,7 +223,3 @@ const TreeView = (() => {
 
   return { init, render, refresh };
 })();
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = TreeView;
-}

@@ -1,125 +1,118 @@
 /**
- * Tree View Styles
- * Organic branching tree with SVG-based rendering
+ * Organic Branching Tree View Styles (Dark Theme)
+ * Styles for the SVG-based visualization inspired by the user-provided image.
  */
 
-.tree-wrapper {
+.tree-wrapper-dark {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: linear-gradient(135deg, #f9fafb 0%, #f0f2f5 100%);
-  border-radius: 12px;
+  background-color: #0d1117; /* Dark background like the image */
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
-.tree-header {
-  padding: 1.5rem;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+.tree-header-dark {
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
+  color: #c9d1d9;
 }
 
-.tree-header h2 {
+.tree-header-dark h2 {
   margin: 0 0 0.5rem;
   font-size: 1.6rem;
-  color: #1f2937;
   font-weight: 700;
+  color: #f0f6fc;
 }
 
-.tree-header p {
+.tree-header-dark p {
   margin: 0;
-  color: #6b7280;
-  font-size: 0.95rem;
+  color: #8b949e;
 }
 
-.tree-container {
+.tree-svg-container-dark {
   flex: 1;
   position: relative;
-  overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  overflow: auto; /* Allows panning */
+  min-height: 800px;
 }
 
-.tree-svg {
+#tree-svg {
   width: 100%;
   height: 100%;
-  max-width: 1400px;
 }
 
-.tree-node {
+/* Branch styling */
+.tree-branch {
+  fill: none;
+  stroke-linecap: round;
+  stroke-opacity: 0.6;
+  transition: stroke-opacity 0.2s ease-in-out;
+}
+
+.tree-node:hover ~ .tree-branch {
+  stroke-opacity: 0.2; /* Dim other branches on hover */
+}
+
+/* Node styling */
+.tree-node circle {
+  stroke-width: 3px;
   transition: all 0.2s ease;
 }
 
-.tree-node:hover .node-circle {
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-}
-
-.tree-legend {
-  padding: 1rem 1.5rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-top: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
-.tree-legend span {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.tree-legend strong {
-  color: #1f2937;
-}
-
-.tree-tooltip {
-  position: fixed;
-  display: none;
-  background: rgba(31, 41, 55, 0.95);
-  color: #f3f4f6;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  z-index: 1000;
+.tree-node-label {
+  font-size: 14px;
+  font-weight: bold;
   pointer-events: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--font-mono);
+  text-anchor: end;
+}
+
+.tree-node {
+  cursor: pointer;
+}
+
+.tree-node.active circle,
+.tree-node:hover circle {
+  r: 10;
+  stroke-width: 4px;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* Tooltip for course info */
+.tree-tooltip-dark {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(30, 30, 42, 0.95);
+  color: #f0f6fc;
+  border: 2px solid;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
+  backdrop-filter: blur(5px);
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   max-width: 280px;
 }
 
-.tree-tooltip strong {
+.tree-tooltip-dark.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tree-tooltip-dark strong {
   display: block;
+  font-size: 1rem;
   margin-bottom: 0.25rem;
   color: #fff;
+  line-height: 1.3;
 }
 
-.tree-tooltip small {
-  display: block;
-  color: #d1d5db;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .tree-header h2 {
-    font-size: 1.3rem;
-  }
-
-  .tree-container {
-    padding: 1rem;
-  }
-
-  .tree-legend {
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-  }
-
-  .tree-legend span {
-    font-size: 0.8rem;
-  }
+.tree-tooltip-dark span {
+  font-size: 0.85rem;
+  color: #8b949e;
 }
