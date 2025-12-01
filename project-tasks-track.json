@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "project_name": "AI Learning Roadmap",
+    "version": "1.0.0",
+    "created": "2025-11-30",
+    "last_updated": "2025-11-30",
+    "description": "GitHub Pages static site for displaying AI courses in multiple visualization formats"
+  },
+  "priority_levels": {
+    "P1": "Critical - Must complete",
+    "P2": "High - Important feature",
+    "P3": "Medium - Nice to have",
+    "P4": "Low - Future enhancement"
+  },
+  "status_types": {
+    "pending": "Not started",
+    "in_progress": "Currently working on",
+    "completed": "Finished",
+    "blocked": "Waiting on dependency",
+    "deferred": "Postponed to later"
+  },
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "Project Structure Setup",
+      "description": "Create folder structure for css, js, components, views, and config",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["setup", "infrastructure"]
+    },
+    {
+      "id": "TASK-002",
+      "title": "Core CSS Styles",
+      "description": "Build main stylesheet with tab navigation, responsive layout, and theme variables",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["css", "styling"]
+    },
+    {
+      "id": "TASK-003",
+      "title": "Data Loader Module",
+      "description": "JavaScript module to load and parse courses-index.json and career-paths.json with caching",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["javascript", "data"]
+    },
+    {
+      "id": "TASK-004",
+      "title": "Tab Navigation System",
+      "description": "JavaScript module for switching between visualization views with URL hash support",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["javascript", "navigation"]
+    },
+    {
+      "id": "TASK-005",
+      "title": "Text Index View",
+      "description": "Clickable text list view component - the landing/default view with filtering",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "component"]
+    },
+    {
+      "id": "TASK-006",
+      "title": "Cards View",
+      "description": "Card-based grid view for courses with sorting and filtering",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "component"]
+    },
+    {
+      "id": "TASK-007",
+      "title": "Tree View",
+      "description": "Hierarchical tree visualization component for career paths",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "component"]
+    },
+    {
+      "id": "TASK-008",
+      "title": "Graph View",
+      "description": "Node-based graph visualization showing course relationships and prerequisites",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "component"]
+    },
+    {
+      "id": "TASK-009",
+      "title": "Timeline View",
+      "description": "Train station timeline visualization for course progression",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "component"]
+    },
+    {
+      "id": "TASK-010",
+      "title": "Main Index HTML",
+      "description": "Create main page with tab navigation and component containers",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["html", "main"]
+    },
+    {
+      "id": "TASK-011",
+      "title": "App Entry Point",
+      "description": "Main application entry point that initializes all modules",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["javascript", "main"]
+    },
+    {
+      "id": "TASK-012",
+      "title": "Deploy to GitHub Pages",
+      "description": "Initialize git, create repo, push to GitHub, enable GitHub Pages",
+      "priority": "P1",
+      "status": "in_progress",
+      "created": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["deployment", "github"]
+    },
+    {
+      "id": "TASK-013",
+      "title": "Mobile Responsive Optimization",
+      "description": "Ensure all views work well on mobile devices",
+      "priority": "P3",
+      "status": "pending",
+      "created": "2025-11-30",
+      "assignee": "user",
+      "tags": ["css", "responsive"]
+    },
+    {
+      "id": "TASK-014",
+      "title": "Dark Mode Support",
+      "description": "Add dark mode toggle and theme support",
+      "priority": "P4",
+      "status": "pending",
+      "created": "2025-11-30",
+      "assignee": "user",
+      "tags": ["css", "feature"]
+    },
+    {
+      "id": "TASK-015",
+      "title": "Course Progress Tracking",
+      "description": "Add ability to mark courses as completed with localStorage persistence",
+      "priority": "P3",
+      "status": "pending",
+      "created": "2025-11-30",
+      "assignee": "user",
+      "tags": ["feature", "javascript"]
+    }
+  ],
+  "completed_count": 11,
+  "pending_count": 4,
+  "in_progress_count": 1
+}
