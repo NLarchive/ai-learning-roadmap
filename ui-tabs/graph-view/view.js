@@ -11,6 +11,8 @@ const GraphView = (() => {
   let isDragging = false;
   let lastMouse = { x: 0, y: 0 };
   let showLabels = false;
+  let modalSticky = false;
+  let activeNode = null;
 
   // Layout configuration
   const config = {
@@ -304,31 +306,97 @@ const GraphView = (() => {
     // Course node interactions
     document.querySelectorAll('.mm-course').forEach(node => {
       node.addEventListener('mouseenter', e => {
+        if (modalSticky) return; // Don't update if sticky
+        
         const rect = node.getBoundingClientRect();
         tooltip.innerHTML = `
-          <strong>${node.dataset.title}</strong>
+          <div class="tt-header">
+            <strong>${node.dataset.title}</strong>
+            <button class="tt-close" aria-label="Close">×</button>
+          </div>
           <p>${Utils.truncate(node.dataset.desc, 120)}</p>
           <div class="tt-meta">
             <span>⏱ ${node.dataset.hours}h</span>
             <span>📊 ${node.dataset.diff}</span>
           </div>
-          <small>Click to open course →</small>
+          <a href="${node.dataset.url}" target="_blank" class="tt-link">Open Course →</a>
         `;
+        
+        // Add close button handler
+        tooltip.querySelector('.tt-close')?.addEventListener('click', e => {
+          e.stopPropagation();
+          tooltip.classList.remove('visible');
+          modalSticky = false;
+          activeNode = null;
+          document.querySelectorAll('.mm-course').forEach(n => n.classList.remove('hovered'));
+        });
+        
         tooltip.style.left = `${rect.right + 10}px`;
         tooltip.style.top = `${rect.top}px`;
         tooltip.classList.add('visible');
         node.classList.add('hovered');
       });
-      
+
       node.addEventListener('mouseleave', () => {
+        if (!modalSticky) {
+          tooltip.classList.remove('visible');
+          node.classList.remove('hovered');
+        }
+      });
+
+      node.addEventListener('click', e => {
+        e.stopPropagation();
+        
+        // Dismiss previous sticky modal
+        if (activeNode && activeNode !== node) {
+          activeNode.classList.remove('hovered');
+          document.querySelectorAll('.mm-course').forEach(n => n.classList.remove('hovered'));
+        }
+        
+        // Make this modal sticky
+        modalSticky = true;
+        activeNode = node;
+        
+        const rect = node.getBoundingClientRect();
+        tooltip.innerHTML = `
+          <div class="tt-header">
+            <strong>${node.dataset.title}</strong>
+            <button class="tt-close" aria-label="Close">×</button>
+          </div>
+          <p>${Utils.truncate(node.dataset.desc, 120)}</p>
+          <div class="tt-meta">
+            <span>⏱ ${node.dataset.hours}h</span>
+            <span>📊 ${node.dataset.diff}</span>
+          </div>
+          <a href="${node.dataset.url}" target="_blank" class="tt-link">🔗 Open Course</a>
+        `;
+        
+        // Add close button handler
+        tooltip.querySelector('.tt-close')?.addEventListener('click', e => {
+          e.stopPropagation();
+          tooltip.classList.remove('visible');
+          modalSticky = false;
+          activeNode = null;
+          node.classList.remove('hovered');
+        });
+        
+        // Make tooltip stay at modal position
+        tooltip.classList.add('visible', 'sticky');
+        tooltip.style.left = `${rect.right + 10}px`;
+        tooltip.style.top = `${rect.top}px`;
+        tooltip.style.pointerEvents = 'auto';
+        node.classList.add('hovered');
+      });
+    });
+    
+    // Close modal when clicking elsewhere
+    document.addEventListener('click', e => {
+      if (modalSticky && e.target !== tooltip && !tooltip.contains(e.target)) {
         tooltip.classList.remove('visible');
-        node.classList.remove('hovered');
-      });
-      
-      node.addEventListener('click', () => {
-        const url = node.dataset.url;
-        if (url && url !== '#') window.open(url, '_blank');
-      });
+        modalSticky = false;
+        if (activeNode) activeNode.classList.remove('hovered');
+        activeNode = null;
+      }
     });
   }
 

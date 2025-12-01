@@ -250,13 +250,43 @@
 
 .mindmap-tooltip.visible {
   opacity: 1;
+  pointer-events: auto;
+}
+
+.mindmap-tooltip.sticky {
+  pointer-events: auto;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  border: 2px solid #667eea;
+}
+
+.tt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .mindmap-tooltip strong {
   display: block;
   color: #1a202c;
-  margin-bottom: 0.4rem;
   font-size: 0.95rem;
+  flex: 1;
+}
+
+.tt-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #718096;
+  padding: 0;
+  margin-left: 0.5rem;
+  transition: color 0.2s;
+  flex-shrink: 0;
+}
+
+.tt-close:hover {
+  color: #e53e3e;
 }
 
 .mindmap-tooltip p {
@@ -271,13 +301,29 @@
   gap: 1rem;
   font-size: 0.75rem;
   color: #4a5568;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
 }
 
-.mindmap-tooltip small {
+.tt-link {
   display: block;
-  color: #667eea;
-  font-size: 0.7rem;
+  padding: 0.5rem 0.75rem;
+  background: #667eea;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  margin-top: 0.5rem;
+}
+
+.tt-link:hover {
+  background: #5568d3;
+  text-decoration: none;
+  transform: translateY(-2px);
 }
 
 /* Responsive */
