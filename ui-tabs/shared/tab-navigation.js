@@ -1,5 +1,5 @@
 /**
- * Tab Navigation Module
+ * Tab Navigation Module (Shared)
  * Handles tab switching and view management
  */
 
@@ -7,6 +7,7 @@ const TabNavigation = (() => {
   // State
   let currentTab = 'index';
   let views = {};
+  let renderers = {};
   let initialized = false;
 
   /**
@@ -75,6 +76,11 @@ const TabNavigation = (() => {
     // Update current tab
     currentTab = viewId;
 
+    // Call registered renderer
+    if (renderers[viewId]) {
+      renderers[viewId]();
+    }
+
     // Emit custom event for view renderers
     document.dispatchEvent(new CustomEvent('viewChanged', {
       detail: { view: viewId }
@@ -92,11 +98,7 @@ const TabNavigation = (() => {
    * Register a view renderer
    */
   function registerRenderer(viewId, renderer) {
-    document.addEventListener('viewChanged', (event) => {
-      if (event.detail.view === viewId) {
-        renderer();
-      }
-    });
+    renderers[viewId] = renderer;
   }
 
   /**
@@ -117,17 +119,28 @@ const TabNavigation = (() => {
     nav.appendChild(btn);
   }
 
+  /**
+   * Remove a tab
+   */
+  function removeTab(id) {
+    const btn = document.querySelector(`.tab-btn[data-tab="${id}"]`);
+    if (btn) btn.remove();
+    delete views[id];
+    delete renderers[id];
+  }
+
   // Public API
   return {
     init,
     switchTo,
     getCurrentView,
     registerRenderer,
-    addTab
+    addTab,
+    removeTab
   };
 })();
 
-// Auto-initialize when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  TabNavigation.init();
-});
+// Export for module use
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = TabNavigation;
+}

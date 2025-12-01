@@ -4,379 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AI Learning Roadmap - Interactive course visualization for AI career paths">
+    <meta name="keywords" content="AI, Machine Learning, Deep Learning, Courses, Roadmap, Career Path">
+    <meta name="author" content="Nicolas Larenas">
     <title>AI Learning Roadmap | DeepLearning.AI Courses</title>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     
-    <!-- Stylesheets -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Additional View Styles -->
-    <style>
-        /* Tree View Additional Styles */
-        .trunk-courses {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-sm);
-            padding-left: var(--spacing-lg);
-            position: relative;
-        }
-        
-        .trunk-node {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: var(--bg-primary);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-fast);
-        }
-        
-        .trunk-node:hover {
-            background: var(--bg-secondary);
-            box-shadow: var(--shadow-md);
-            transform: translateX(4px);
-        }
-        
-        .node-connector {
-            width: 2px;
-            height: 100%;
-            background: var(--trunk);
-            position: absolute;
-            left: -20px;
-        }
-        
-        .node-order {
-            width: 28px;
-            height: 28px;
-            background: var(--trunk);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-        
-        .node-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .node-title {
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-        
-        .node-stage {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        
-        .capstone {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border-radius: var(--radius-md);
-            border: 1px solid #ffe066;
-        }
-        
-        .capstone-icon {
-            font-size: 2rem;
-        }
-        
-        .capstone-info strong {
-            color: var(--text-primary);
-        }
-        
-        .capstone-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: var(--spacing-xs);
-        }
-        
-        .stage-course {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            transition: all var(--transition-fast);
-            padding: var(--spacing-xs) 0;
-        }
-        
-        .stage-course:hover {
-            color: var(--primary);
-        }
-        
-        .course-bullet {
-            color: var(--primary);
-        }
-        
-        /* Graph View Additional Styles */
-        .graph-controls {
-            display: flex;
-            gap: var(--spacing-md);
-            padding: var(--spacing-md);
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .graph-btn {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 1px solid var(--border-color);
-            background: var(--bg-primary);
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all var(--transition-fast);
-        }
-        
-        .graph-btn:hover {
-            background: var(--bg-secondary);
-            border-color: var(--primary);
-        }
-        
-        .graph-legend {
-            display: flex;
-            gap: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: var(--bg-secondary);
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-            border-top: 1px solid var(--border-color);
-            justify-content: center;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        #graph-canvas-container {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        #graph-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        
-        #graph-nodes {
-            position: relative;
-            width: 100%;
-            height: 600px;
-        }
-        
-        /* Timeline View Additional Styles */
-        .timeline-header {
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .timeline-header h2 {
-            font-size: 1.75rem;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .timeline-path-selector {
-            display: flex;
-            gap: var(--spacing-sm);
-            justify-content: center;
-            margin-top: var(--spacing-lg);
-        }
-        
-        .path-btn {
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border: 2px solid var(--border-color);
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg);
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-        }
-        
-        .path-btn:hover {
-            border-color: var(--primary);
-        }
-        
-        .path-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .stage-section {
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .stage-header {
-            margin-left: 80px;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .stage-badge {
-            display: inline-block;
-            padding: var(--spacing-xs) var(--spacing-md);
-            color: white;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .station-train {
-            position: absolute;
-            right: var(--spacing-md);
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: all var(--transition-fast);
-        }
-        
-        .timeline-station {
-            position: relative;
-        }
-        
-        .timeline-station:hover .station-train {
-            opacity: 1;
-        }
-        
-        .timeline-station:hover .station-content {
-            background: var(--bg-secondary);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .station-stage {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: var(--spacing-xs);
-        }
-        
-        .timeline-end {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            margin-left: 80px;
-            margin-top: var(--spacing-xl);
-        }
-        
-        .end-marker {
-            width: 48px;
-            height: 48px;
-            border: 4px solid;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: var(--bg-secondary);
-        }
-        
-        .timeline-capstone {
-            display: flex;
-            gap: var(--spacing-md);
-            margin-left: 80px;
-            margin-top: var(--spacing-xl);
-            padding: var(--spacing-lg);
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border-radius: var(--radius-lg);
-            border: 1px solid #ffe066;
-        }
-        
-        .capstone-marker {
-            width: 48px;
-            height: 48px;
-            border: 4px solid;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: var(--bg-secondary);
-            flex-shrink: 0;
-        }
-        
-        .capstone-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .capstone-content p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Error Container */
-        .error-container {
-            text-align: center;
-            padding: var(--spacing-2xl);
-            background: var(--bg-secondary);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .error-container h2 {
-            color: #e53e3e;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .error-container button {
-            margin-top: var(--spacing-lg);
-            padding: var(--spacing-sm) var(--spacing-xl);
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 1rem;
-        }
-    </style>
 </head>
 <body>
     <!-- Header with Navigation -->
     <header class="app-header">
         <div class="header-content">
-            <a href="#" class="logo">
+            <div class="logo">
                 <span class="logo-icon">🤖</span>
-                <span>AI Learning Roadmap</span>
-            </a>
-            
-            <!-- Tab Navigation -->
-            <nav class="tab-navigation">
-                <button class="tab-btn active" data-tab="index">
-                    <span class="tab-icon">📋</span>
+                <div class="logo-text">
+                    <h1>AI Learning Roadmap</h1>
+                    <span class="tagline">DeepLearning.AI Course Explorer</span>
+                </div>
+            </div>
+            <nav class="tab-navigation" role="tablist" aria-label="View navigation">
+                <button class="tab-btn active" data-tab="index" role="tab" aria-selected="true">
+                    <span class="tab-icon">📚</span>
                     <span>Index</span>
                 </button>
-                <button class="tab-btn" data-tab="cards">
-                    <span class="tab-icon">🃏</span>
+                <button class="tab-btn" data-tab="cards" role="tab" aria-selected="false">
+                    <span class="tab-icon">🎴</span>
                     <span>Cards</span>
                 </button>
-                <button class="tab-btn" data-tab="tree">
+                <button class="tab-btn" data-tab="tree" role="tab" aria-selected="false">
                     <span class="tab-icon">🌳</span>
                     <span>Tree</span>
                 </button>
-                <button class="tab-btn" data-tab="graph">
-                    <span class="tab-icon">🕸️</span>
-                    <span>Graph</span>
+                <button class="tab-btn" data-tab="graph" role="tab" aria-selected="false">
+                    <span class="tab-icon">🧠</span>
+                    <span>Mind Map</span>
                 </button>
-                <button class="tab-btn" data-tab="timeline">
+                <button class="tab-btn" data-tab="timeline" role="tab" aria-selected="false">
                     <span class="tab-icon">🚂</span>
                     <span>Timeline</span>
                 </button>
@@ -386,60 +52,69 @@
 
     <!-- Main Content Area -->
     <main class="main-content">
-        <!-- Text Index View (Default) -->
-        <div id="view-index" class="view-container active" data-view="index">
+        <!-- Text Index View -->
+        <section id="view-index" class="view-container active" data-view="index" role="tabpanel" aria-label="Course Index">
             <div class="loading">
                 <div class="loading-spinner"></div>
                 <span class="loading-text">Loading courses...</span>
             </div>
-        </div>
+        </section>
 
         <!-- Cards View -->
-        <div id="view-cards" class="view-container" data-view="cards">
+        <section id="view-cards" class="view-container" data-view="cards" role="tabpanel" aria-label="Course Cards">
             <div class="loading">
                 <div class="loading-spinner"></div>
                 <span class="loading-text">Loading cards...</span>
             </div>
-        </div>
+        </section>
 
         <!-- Tree View -->
-        <div id="view-tree" class="view-container" data-view="tree">
+        <section id="view-tree" class="view-container" data-view="tree" role="tabpanel" aria-label="Career Path Tree">
             <div class="loading">
                 <div class="loading-spinner"></div>
                 <span class="loading-text">Loading tree...</span>
             </div>
-        </div>
+        </section>
 
-        <!-- Graph View -->
-        <div id="view-graph" class="view-container" data-view="graph">
+        <!-- Mind Map / Graph View -->
+        <section id="view-graph" class="view-container" data-view="graph" role="tabpanel" aria-label="Mind Map">
             <div class="loading">
                 <div class="loading-spinner"></div>
-                <span class="loading-text">Loading graph...</span>
+                <span class="loading-text">Loading mind map...</span>
             </div>
-        </div>
+        </section>
 
         <!-- Timeline View -->
-        <div id="view-timeline" class="view-container" data-view="timeline">
+        <section id="view-timeline" class="view-container" data-view="timeline" role="tabpanel" aria-label="Learning Timeline">
             <div class="loading">
                 <div class="loading-spinner"></div>
                 <span class="loading-text">Loading timeline...</span>
             </div>
-        </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.85rem;">
-        <p>AI Learning Roadmap • Courses from <a href="https://learn.deeplearning.ai" target="_blank" style="color: var(--primary);">DeepLearning.AI</a></p>
+    <footer class="app-footer">
+        <p>
+            Built with ❤️ for AI learners | 
+            Data sourced from <a href="https://learn.deeplearning.ai" target="_blank" rel="noopener">DeepLearning.AI</a> |
+            <a href="https://github.com/NLarchive/ai-learning-roadmap" target="_blank" rel="noopener">GitHub</a>
+        </p>
     </footer>
 
-    <!-- JavaScript Modules -->
-    <script src="js/data-loader.js"></script>
-    <script src="js/tab-navigation.js"></script>
-    <script src="js/views/text-index.js"></script>
-    <script src="js/views/cards-view.js"></script>
-    <script src="js/views/tree-view.js"></script>
-    <script src="js/views/graph-view.js"></script>
-    <script src="js/views/timeline-view.js"></script>
+    <!-- Shared Modules -->
+    <script src="ui-tabs/shared/utils.js"></script>
+    <script src="ui-tabs/shared/data-loader.js"></script>
+    <script src="ui-tabs/shared/tab-navigation.js"></script>
+    
+    <!-- View Components -->
+    <script src="ui-tabs/index-view/view.js"></script>
+    <script src="ui-tabs/cards-view/view.js"></script>
+    <script src="ui-tabs/tree-view/view.js"></script>
+    <script src="ui-tabs/graph-view/view.js"></script>
+    <script src="ui-tabs/timeline-view/view.js"></script>
+    
+    <!-- Main Application -->
     <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,289 @@
+/**
+ * Timeline View Styles
+ * Clean train journey timeline with proper spacing
+ */
+
+.timeline-wrapper {
+  min-height: 500px;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.timeline-header {
+  padding: 1.5rem;
+  text-align: center;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.timeline-header h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+.timeline-header p {
+  margin: 0 0 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.path-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.path-tab {
+  padding: 0.5rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  background: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.path-tab:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.path-tab.active {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: white;
+}
+
+.timeline-scroll {
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.timeline-track {
+  position: relative;
+  padding-left: 80px;
+  min-height: 400px;
+}
+
+.track-rail {
+  position: absolute;
+  left: 35px;
+  top: 0;
+  bottom: 60px;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--track-color), transparent);
+  border-radius: 2px;
+}
+
+/* Station */
+.station {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.station-marker {
+  position: absolute;
+  left: -60px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 4px solid var(--color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.station:hover .station-marker {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.marker-num {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color);
+}
+
+.station-card {
+  flex: 1;
+  background: white;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.2s, transform 0.2s;
+  max-width: 500px;
+}
+
+.station:hover .station-card {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transform: translateX(4px);
+}
+
+.station-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e293b;
+  text-decoration: none;
+  margin-bottom: 0.25rem;
+  transition: color 0.2s;
+}
+
+.station-title:hover {
+  color: #667eea;
+}
+
+.station-stage {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.station-meta {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.station-meta .difficulty {
+  padding: 0.1rem 0.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.difficulty.beginner {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.difficulty.intermediate {
+  background: rgba(255, 152, 0, 0.1);
+  color: #ef6c00;
+}
+
+.difficulty.advanced {
+  background: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+}
+
+/* Stage Divider */
+.stage-divider {
+  margin: 1.5rem 0 1rem -60px;
+  padding-left: 60px;
+}
+
+.stage-divider span {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 20px;
+}
+
+/* Track End */
+.track-end {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  margin-left: -45px;
+  padding: 1rem;
+}
+
+.end-flag {
+  font-size: 2rem;
+}
+
+.end-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--track-color);
+}
+
+/* Capstone */
+.capstone-card {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,152,0,0.1));
+  border: 1px solid rgba(255,193,7,0.3);
+  border-radius: 12px;
+  max-width: 500px;
+}
+
+.capstone-icon {
+  font-size: 1.75rem;
+}
+
+.capstone-text strong {
+  display: block;
+  color: #f57c00;
+  margin-bottom: 0.25rem;
+}
+
+.capstone-text p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.no-data {
+  text-align: center;
+  color: #64748b;
+  padding: 3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline-track {
+    padding-left: 60px;
+  }
+
+  .station-marker {
+    left: -50px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .marker-num {
+    font-size: 0.9rem;
+  }
+
+  .station-card {
+    padding: 0.875rem 1rem;
+  }
+
+  .path-tabs {
+    gap: 0.25rem;
+  }
+
+  .path-tab {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

@@ -96,15 +96,31 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary);
+  gap: var(--spacing-md);
   text-decoration: none;
 }
 
 .logo-icon {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.logo-text .tagline {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 400;
 }
 
 /* Tab Navigation */
@@ -663,3 +679,26 @@ body {
 .mb-md { margin-bottom: var(--spacing-md); }
 .text-center { text-align: center; }
 .text-muted { color: var(--text-secondary); }
+
+/* ==========================================
+   Footer
+   ========================================== */
+.app-footer {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.app-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.app-footer a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}

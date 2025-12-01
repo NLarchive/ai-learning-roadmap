@@ -1,10 +1,10 @@
 {
   "meta": {
     "project_name": "AI Learning Roadmap",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "created": "2025-11-30",
     "last_updated": "2025-11-30",
-    "description": "GitHub Pages static site for displaying AI courses in multiple visualization formats"
+    "description": "GitHub Pages static site for displaying AI courses in multiple visualization formats with modular component architecture"
   },
   "priority_levels": {
     "P1": "Critical - Must complete",
@@ -146,13 +146,58 @@
       "title": "Deploy to GitHub Pages",
       "description": "Initialize git, create repo, push to GitHub, enable GitHub Pages",
       "priority": "P1",
-      "status": "in_progress",
+      "status": "completed",
       "created": "2025-11-30",
+      "completed_date": "2025-11-30",
       "assignee": "copilot",
       "tags": ["deployment", "github"]
     },
     {
       "id": "TASK-013",
+      "title": "Normalize Course URLs",
+      "description": "Fix course URLs to use base_url from JSON for absolute DeepLearning.AI links",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["bugfix", "data"]
+    },
+    {
+      "id": "TASK-014",
+      "title": "Modular Component Architecture",
+      "description": "Refactor views into independent modules in ui-tabs/ with shared utilities",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["refactor", "architecture"]
+    },
+    {
+      "id": "TASK-015",
+      "title": "Mind Map Graph Redesign",
+      "description": "Redesign graph view as tree-of-life mind map with radial layout and SVG rendering",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "enhancement"]
+    },
+    {
+      "id": "TASK-016",
+      "title": "Add README and LICENSE",
+      "description": "Create comprehensive README.md and MIT LICENSE file",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["documentation"]
+    },
+    {
+      "id": "TASK-017",
       "title": "Mobile Responsive Optimization",
       "description": "Ensure all views work well on mobile devices",
       "priority": "P3",
@@ -162,7 +207,7 @@
       "tags": ["css", "responsive"]
     },
     {
-      "id": "TASK-014",
+      "id": "TASK-018",
       "title": "Dark Mode Support",
       "description": "Add dark mode toggle and theme support",
       "priority": "P4",
@@ -172,7 +217,7 @@
       "tags": ["css", "feature"]
     },
     {
-      "id": "TASK-015",
+      "id": "TASK-019",
       "title": "Course Progress Tracking",
       "description": "Add ability to mark courses as completed with localStorage persistence",
       "priority": "P3",
@@ -180,9 +225,42 @@
       "created": "2025-11-30",
       "assignee": "user",
       "tags": ["feature", "javascript"]
+    },
+    {
+      "id": "TASK-020",
+      "title": "Timeline View Redesign",
+      "description": "Fix station number/title overlap with proper layout and better spacing",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "bugfix"]
+    },
+    {
+      "id": "TASK-021",
+      "title": "Tree View Root System",
+      "description": "Redesign tree view as organic root system with SVG rendering",
+      "priority": "P1",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["view", "enhancement"]
+    },
+    {
+      "id": "TASK-022",
+      "title": "Clean Up Legacy Files",
+      "description": "Remove old js/views folder and duplicate component files",
+      "priority": "P2",
+      "status": "completed",
+      "created": "2025-11-30",
+      "completed_date": "2025-11-30",
+      "assignee": "copilot",
+      "tags": ["cleanup", "refactor"]
     }
   ],
-  "completed_count": 11,
-  "pending_count": 4,
-  "in_progress_count": 1
+  "completed_count": 19,
+  "pending_count": 3,
+  "in_progress_count": 0
 }

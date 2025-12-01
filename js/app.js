@@ -1,6 +1,7 @@
 /**
  * Main Application Entry Point
  * Initializes all modules and manages the application lifecycle
+ * Works with modular view components from ui-tabs/
  */
 
 const App = (() => {
@@ -37,28 +38,28 @@ const App = (() => {
         timeline: document.getElementById('view-timeline')
       };
 
-      // Initialize views
-      if (containers.index) {
+      // Initialize views with their containers
+      if (containers.index && typeof TextIndexView !== 'undefined') {
         await TextIndexView.init(containers.index);
         views.index = TextIndexView;
       }
 
-      if (containers.cards) {
+      if (containers.cards && typeof CardsView !== 'undefined') {
         await CardsView.init(containers.cards);
         views.cards = CardsView;
       }
 
-      if (containers.tree) {
+      if (containers.tree && typeof TreeView !== 'undefined') {
         await TreeView.init(containers.tree);
         views.tree = TreeView;
       }
 
-      if (containers.graph) {
+      if (containers.graph && typeof GraphView !== 'undefined') {
         await GraphView.init(containers.graph);
         views.graph = GraphView;
       }
 
-      if (containers.timeline) {
+      if (containers.timeline && typeof TimelineView !== 'undefined') {
         await TimelineView.init(containers.timeline);
         views.timeline = TimelineView;
       }

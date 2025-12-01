@@ -1,0 +1,297 @@
+/**
+ * Mind Map View Styles
+ * Clean, interactive radial mind-map visualization
+ */
+
+.mindmap-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 600px;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+}
+
+.mindmap-header {
+  padding: 1.25rem;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+}
+
+.mindmap-header h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  color: #1a202c;
+}
+
+.mindmap-header p {
+  margin: 0 0 1rem;
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.mindmap-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ctrl-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4a5568;
+}
+
+.ctrl-btn:hover {
+  border-color: #667eea;
+  background: #667eea;
+  color: white;
+}
+
+.mindmap-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #4a5568;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.mindmap-viewport {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: grab;
+}
+
+.mindmap-canvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.connections-svg {
+  position: absolute;
+  left: -400px;
+  top: -400px;
+  width: 800px;
+  height: 800px;
+  pointer-events: none;
+}
+
+.branch-line {
+  stroke-linecap: round;
+}
+
+.course-line {
+  stroke-linecap: round;
+}
+
+/* Nodes */
+.mm-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  z-index: 10;
+}
+
+.mm-center {
+  width: var(--size);
+  height: var(--size);
+  left: calc(var(--size) / -2);
+  top: calc(var(--size) / -2);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+}
+
+.mm-center .mm-icon {
+  font-size: 2rem;
+}
+
+.mm-center .mm-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  margin-top: 2px;
+}
+
+.mm-path {
+  width: var(--size);
+  height: var(--size);
+  left: calc(var(--x) - var(--size) / 2);
+  top: calc(var(--y) - var(--size) / 2);
+  background: linear-gradient(135deg, var(--color) 0%, var(--color-light) 100%);
+  box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+
+.mm-path .mm-icon {
+  font-size: 1.4rem;
+}
+
+.mm-path-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #2d3748;
+  text-align: center;
+}
+
+.mm-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: white;
+  color: var(--color);
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--color);
+}
+
+.mm-course {
+  width: var(--size);
+  height: var(--size);
+  left: calc(var(--x) - var(--size) / 2);
+  top: calc(var(--y) - var(--size) / 2);
+  background: var(--color);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 5;
+}
+
+.mm-course::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.mm-course:hover,
+.mm-course.hovered {
+  transform: scale(2);
+  z-index: 20;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.mm-course-label {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.6rem;
+  color: #4a5568;
+  background: rgba(255,255,255,0.95);
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.mm-course:hover .mm-course-label,
+.mm-course.hovered .mm-course-label {
+  opacity: 1;
+}
+
+/* Tooltip */
+.mindmap-tooltip {
+  position: fixed;
+  background: white;
+  padding: 0.875rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  max-width: 260px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  border: 1px solid #e2e8f0;
+}
+
+.mindmap-tooltip.visible {
+  opacity: 1;
+}
+
+.mindmap-tooltip strong {
+  display: block;
+  color: #1a202c;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.mindmap-tooltip p {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: #718096;
+  line-height: 1.4;
+}
+
+.mindmap-tooltip .tt-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.75rem;
+  color: #4a5568;
+  margin-bottom: 0.4rem;
+}
+
+.mindmap-tooltip small {
+  display: block;
+  color: #667eea;
+  font-size: 0.7rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mindmap-wrapper {
+    min-height: 450px;
+  }
+  
+  .mindmap-header h2 {
+    font-size: 1.25rem;
+  }
+  
+  .mindmap-legend {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}

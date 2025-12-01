@@ -1,16 +1,18 @@
 /**
- * Data Loader Module
+ * Data Loader Module (Shared)
  * Handles loading and caching of course data from JSON files
+ * This is a shared utility used by all view components
  */
 
 const DataLoader = (() => {
   // Cache for loaded data
   const cache = {
     courses: null,
-    careerPaths: null
+    careerPaths: null,
+    baseUrl: null
   };
 
-  // Configuration
+  // Configuration - paths relative to root
   const config = {
     coursesPath: './config-roadmap/courses-index.json',
     careerPathsPath: './config-roadmap/career-paths.json'
@@ -39,25 +41,26 @@ const DataLoader = (() => {
     if (cache.courses) {
       return cache.courses;
     }
+
     const data = await fetchJSON(config.coursesPath);
 
-    // If the JSON includes a meta.base_url, normalize any root-relative course URLs
-    // so the rest of the app always gets absolute URLs.
+    // Store base URL for later use
+    if (data.meta && data.meta.base_url) {
+      cache.baseUrl = data.meta.base_url;
+    }
+
+    // Normalize all course URLs at load time
     try {
-      const baseUrl = data?.meta?.base_url || '';
-      if (baseUrl && Array.isArray(data.courses)) {
+      if (data.meta && data.meta.base_url && Array.isArray(data.courses)) {
+        const base = data.meta.base_url.replace(/\/$/, '');
         data.courses.forEach(course => {
-          if (course && course.url && course.url.startsWith('/')) {
-            // avoid double-prepending if someone already added full URL
-            if (!course.url.startsWith('http')) {
-              course.url = `${baseUrl}${course.url}`;
-            }
+          if (course.url && course.url.startsWith('/')) {
+            course.url = base + course.url;
           }
         });
       }
     } catch (err) {
-      // Normalization failure shouldn't block data usage.
-      console.warn('Warning: failed to normalize course URLs', err);
+      console.warn('Could not normalize course URLs:', err);
     }
 
     cache.courses = data;
@@ -87,11 +90,18 @@ const DataLoader = (() => {
   }
 
   /**
+   * Get base URL from cached data
+   */
+  function getBaseUrl() {
+    return cache.baseUrl || 'https://learn.deeplearning.ai';
+  }
+
+  /**
    * Get courses filtered by category
    */
   async function getCoursesByCategory(category) {
     const data = await loadCourses();
-    return data.courses.filter(course => course.category === category).map(normalizeUrl);
+    return data.courses.filter(course => course.category === category);
   }
 
   /**
@@ -101,7 +111,7 @@ const DataLoader = (() => {
     const data = await loadCourses();
     return data.courses.filter(course => 
       course.career_paths && course.career_paths.includes(pathId)
-    ).map(normalizeUrl);
+    );
   }
 
   /**
@@ -110,8 +120,8 @@ const DataLoader = (() => {
   async function getCoursesByDifficulty(difficulty) {
     const data = await loadCourses();
     return data.courses.filter(course => 
-      course.difficulty.toLowerCase() === difficulty.toLowerCase()
-    ).map(normalizeUrl);
+      course.difficulty?.toLowerCase() === difficulty.toLowerCase()
+    );
   }
 
   /**
@@ -120,11 +130,10 @@ const DataLoader = (() => {
   async function searchCourses(query) {
     const data = await loadCourses();
     const lowerQuery = query.toLowerCase();
-    return data.courses.filter(course => 
+    return data.courses.filter(course =>
       course.title.toLowerCase().includes(lowerQuery) ||
-      (course.description && course.description.toLowerCase().includes(lowerQuery)) ||
-      (course.tags && course.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
-    ).map(normalizeUrl);
+      (course.description && course.description.toLowerCase().includes(lowerQuery))
+    );
   }
 
   /**
@@ -132,23 +141,7 @@ const DataLoader = (() => {
    */
   async function getCourseById(id) {
     const data = await loadCourses();
-    const course = data.courses.find(course => course.id === id);
-    return normalizeUrl(course);
-  }
-
-  /**
-   * Normalize course URL to absolute DeepLearning.AI URL
-   */
-  function normalizeUrl(course) {
-    if (!course) return course;
-    // prefer base_url from the loaded courses file when present in cache
-    const baseUrl = cache.courses?.meta?.base_url || 'https://learn.deeplearning.ai';
-    if (course.url && course.url.startsWith('/')) {
-      if (!course.url.startsWith('http')) {
-        course.url = `${baseUrl}${course.url}`;
-      }
-    }
-    return course;
+    return data.courses.find(course => course.id === id);
   }
 
   /**
@@ -179,25 +172,25 @@ const DataLoader = (() => {
    */
   async function getPrerequisiteChain(courseId) {
     const data = await loadCourses();
-    const visited = new Set();
     const chain = [];
+    const visited = new Set();
 
-    async function traverse(id) {
+    async function buildChain(id) {
       if (visited.has(id)) return;
       visited.add(id);
 
       const course = data.courses.find(c => c.id === id);
       if (!course) return;
 
-      if (course.prerequisites) {
+      if (course.prerequisites && course.prerequisites.length > 0) {
         for (const prereqId of course.prerequisites) {
-          await traverse(prereqId);
+          await buildChain(prereqId);
         }
       }
-      chain.push(normalizeUrl(course));
+      chain.push(course);
     }
 
-    await traverse(courseId);
+    await buildChain(courseId);
     return chain;
   }
 
@@ -205,14 +198,13 @@ const DataLoader = (() => {
    * Get recommended next courses
    */
   async function getRecommendedNext(courseId) {
-    const data = await loadCourses();
-    const course = data.courses.find(c => c.id === courseId);
+    const course = await getCourseById(courseId);
     if (!course || !course.recommended_next) return [];
 
+    const data = await loadCourses();
     return course.recommended_next
       .map(id => data.courses.find(c => c.id === id))
-      .filter(Boolean)
-      .map(normalizeUrl);
+      .filter(Boolean);
   }
 
   /**
@@ -221,6 +213,7 @@ const DataLoader = (() => {
   function clearCache() {
     cache.courses = null;
     cache.careerPaths = null;
+    cache.baseUrl = null;
   }
 
   // Public API
@@ -228,6 +221,7 @@ const DataLoader = (() => {
     loadCourses,
     loadCareerPaths,
     loadAll,
+    getBaseUrl,
     getCoursesByCategory,
     getCoursesByCareerPath,
     getCoursesByDifficulty,
