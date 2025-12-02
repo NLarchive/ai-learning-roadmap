@@ -2,7 +2,7 @@
   "meta": {
     "base_url": "https://learn.deeplearning.ai",
     "version": "3.0.0",
-    "last_updated": "2025-12-02T12:11:04.773993",
+    "last_updated": "2025-12-02T12:21:47.355358",
     "total_courses": 43,
     "generation_method": "automated"
   },
@@ -1216,8 +1216,8 @@
       "category": "architecture",
       "subcategory": "internals",
       "career_paths": [
-        "researcher",
-        "trunk"
+        "trunk",
+        "researcher"
       ],
       "skills_gained": [
         "Transformer Architecture"
@@ -1247,8 +1247,8 @@
       "category": "architecture",
       "subcategory": "internals",
       "career_paths": [
-        "researcher",
-        "trunk"
+        "trunk",
+        "researcher"
       ],
       "skills_gained": [
         "AI/ML Fundamentals"
