@@ -1,74 +1,53 @@
 {
-  "fundamentals": {
-    "id": "fundamentals",
-    "name": "Fundamentals",
-    "icon": "📚",
-    "description": "Core AI/ML foundations for all learners",
-    "color": "#6366f1",
-    "subcategories": ["literacy", "math", "ml-foundations", "deep-learning"]
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2025-12-02T12:11:04.775019"
   },
-  "architecture": {
-    "id": "architecture",
-    "name": "Architecture",
-    "icon": "🏗️",
-    "description": "Model architectures and internals",
-    "color": "#8b5cf6",
-    "subcategories": ["transformers", "diffusion", "vision", "multimodal"]
-  },
-  "coding": {
-    "id": "coding",
-    "name": "Coding",
-    "icon": "💻",
-    "description": "Programming and AI-assisted development",
-    "color": "#06b6d4",
-    "subcategories": ["vibe-coding", "traditional", "tools"]
-  },
-  "model-building": {
-    "id": "model-building",
-    "name": "Model Building",
-    "icon": "🔧",
-    "description": "Training, fine-tuning, optimization",
-    "color": "#f59e0b",
-    "subcategories": ["fundamentals", "training", "post-training", "compression", "optimization"]
-  },
-  "model-use": {
-    "id": "model-use",
-    "name": "Model Use",
-    "icon": "🎯",
-    "description": "Prompting, APIs, applications",
-    "color": "#10b981",
-    "subcategories": ["prompt-engineering", "applications", "model-specific"]
-  },
-  "agents": {
-    "id": "agents",
-    "name": "Agents",
-    "icon": "🤖",
-    "description": "Agentic systems, RAG, multi-agents",
-    "color": "#ec4899",
-    "subcategories": ["general", "rag", "multi-agents", "agent-applications", "agentic-ai", "context-extension", "mcp-acp", "optimization", "security"]
-  },
-  "ethical-ai": {
-    "id": "ethical-ai",
-    "name": "Ethical AI",
-    "icon": "⚖️",
-    "description": "AI for good, sustainability",
-    "color": "#14b8a6",
-    "subcategories": ["impact", "sustainability", "fairness"]
-  },
-  "security": {
-    "id": "security",
-    "name": "Security",
-    "icon": "🔒",
-    "description": "Safety, guardrails, red teaming",
-    "color": "#ef4444",
-    "subcategories": ["security", "safety", "governance"]
-  },
-  "optimization": {
-    "id": "optimization",
-    "name": "Optimization",
-    "icon": "⚡",
-    "description": "Performance, caching, evaluation",
-    "color": "#f97316",
-    "subcategories": ["inference", "evaluation", "caching"]
+  "categories": {
+    "fundamentals": {
+      "name": "Fundamentals",
+      "icon": "📚",
+      "color": "#4CAF50"
+    },
+    "architecture": {
+      "name": "Architecture",
+      "icon": "🏗️",
+      "color": "#2196F3"
+    },
+    "coding": {
+      "name": "Coding",
+      "icon": "💻",
+      "color": "#FF9800"
+    },
+    "model-building": {
+      "name": "Model Building",
+      "icon": "🔧",
+      "color": "#9C27B0"
+    },
+    "model-use": {
+      "name": "Model Use",
+      "icon": "🎯",
+      "color": "#F44336"
+    },
+    "agents": {
+      "name": "Agents",
+      "icon": "🤖",
+      "color": "#00BCD4"
+    },
+    "ethical-ai": {
+      "name": "Ethical AI",
+      "icon": "⚖️",
+      "color": "#795548"
+    },
+    "security": {
+      "name": "Security",
+      "icon": "🔒",
+      "color": "#607D8B"
+    },
+    "optimization": {
+      "name": "Optimization",
+      "icon": "⚡",
+      "color": "#FFC107"
+    }
   }
 }

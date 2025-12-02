@@ -1,0 +1,531 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "last_updated": "2025-12-02T12:11:04.775019"
+  },
+  "index": {
+    "deeplearning.ai": {
+      "title": "DeepLearning.AI",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course",
+        "short-title"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "deep-learning-specialization": {
+      "title": "Deep Learning Specialization",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "specialization",
+        "short-title"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "💻- -accessing-utils-file-and-helper-functions": {
+      "title": "💻   Accessing Utils File and Helper Functions",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "building-toward-computer-use-with-anthropic": {
+      "title": "Building toward Computer Use with Anthropic",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "mcp:-build-rich-context-ai-apps-with-anthropic": {
+      "title": "MCP: Build Rich-Context AI Apps with Anthropic",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "machine-learning-in-production": {
+      "title": "Machine Learning in Production",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "jupyter-ai:-ai-coding-in-notebooks": {
+      "title": "Jupyter AI: AI Coding in Notebooks",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "vibe-coding-101-with-replit": {
+      "title": "Vibe Coding 101 with Replit",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "generative-ai-for-everyoneㅤ": {
+      "title": "Generative AI for Everyoneㅤ",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "fast-prototyping-of-genai-apps-with-streamlit": {
+      "title": "Fast Prototyping of GenAI Apps with Streamlit",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "building-with-llama-4": {
+      "title": "Building with Llama 4",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "build-ai-apps-with-mcp-server:-working-with-box-fi": {
+      "title": "Build AI Apps with MCP Server: Working with Box Files",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "orchestrating-workflows-for-genai-applications": {
+      "title": "Orchestrating Workflows for GenAI Applications",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "build-long-context-ai-apps-with-jamba": {
+      "title": "Build Long-Context AI Apps with Jamba",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "reasoning-with-o1": {
+      "title": "Reasoning with o1",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course",
+        "short-title"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "collaborative-writing-and-coding-with-openai-canva": {
+      "title": "Collaborative Writing and Coding with OpenAI Canvas",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "introducing-multimodal-llama-3.2": {
+      "title": "Introducing Multimodal Llama 3.2",
+      "description": "No description",
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "category": "fundamentals",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "chatgpt-prompt-engineering-for-developers": {
+      "title": "ChatGPT Prompt Engineering for Developers",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "category": "model-use",
+      "skills": [
+        "Prompt Engineering"
+      ]
+    },
+    "fine-tuning-&-rl-for-llms:-intro-to-post-training": {
+      "title": "Fine-tuning & RL for LLMs: Intro to Post-training",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "category": "model-use",
+      "skills": [
+        "Fine-tuning"
+      ]
+    },
+    "generative-ai-with-large-language-models": {
+      "title": "Generative AI with Large Language Models",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "category": "model-use",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "pydantic-for-llm-workflows": {
+      "title": "Pydantic for LLM Workflows",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "category": "model-use",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "post-training-of-llms": {
+      "title": "Post-training of LLMs",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course",
+        "short-title"
+      ],
+      "category": "model-use",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "reinforcement-fine-tuning-llms-with-grpo": {
+      "title": "Reinforcement Fine-Tuning LLMs With GRPO",
+      "description": "No description",
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "category": "model-use",
+      "skills": [
+        "Fine-tuning"
+      ]
+    },
+    "evaluating-ai-agents": {
+      "title": "Evaluating AI Agents",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course",
+        "short-title"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "acp:-agent-communication-protocol": {
+      "title": "ACP: Agent Communication Protocol",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "advanced-retrieval-for-ai-with-chroma": {
+      "title": "Advanced Retrieval for AI with Chroma",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "semantic-caching-for-ai-agents": {
+      "title": "Semantic Caching for AI Agents",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "design,-develop,-and-deploy-multi-agent-systems--w": {
+      "title": "Design, Develop, and Deploy Multi-Agent Systems  with CrewAI",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "agentic-ai": {
+      "title": "Agentic AI",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course",
+        "short-title"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "claude-code:-a-highly-agentic-coding-assistant": {
+      "title": "Claude Code: A Highly Agentic Coding Assistant",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "build-apps-with-windsurf’s-ai-coding-agents": {
+      "title": "Build Apps with Windsurf’s AI Coding Agents",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "long-term-agentic-memory-with-langgraph": {
+      "title": "Long-Term Agentic Memory With LangGraph",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "agentic-knowledge-graph-construction": {
+      "title": "Agentic Knowledge Graph Construction",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "retrieval-augmented-generation-(rag)": {
+      "title": "Retrieval Augmented Generation (RAG)",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Retrieval Augmented Generation"
+      ]
+    },
+    "knowledge-graphs-for-ai-agent:-api-discovery": {
+      "title": "Knowledge Graphs for AI Agent: API Discovery",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI",
+        "API Integration"
+      ]
+    },
+    "dspy:-build-and-optimize-agentic-apps": {
+      "title": "DSPy: Build and Optimize Agentic Apps",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "event-driven-agentic-document-workflows": {
+      "title": "Event-Driven Agentic Document Workflows",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "building-multimodal-search-and-rag": {
+      "title": "Building Multimodal Search and RAG",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Retrieval Augmented Generation"
+      ]
+    },
+    "building-ai-browser-agents": {
+      "title": "Building AI Browser Agents",
+      "description": "No description",
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "category": "agents",
+      "skills": [
+        "Agentic AI"
+      ]
+    },
+    "safe-and-reliable-ai-via-guardrails": {
+      "title": "Safe and reliable AI via guardrails",
+      "description": "No description",
+      "tags": [
+        "security",
+        "course"
+      ],
+      "category": "security",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "attention-in-transformers:-concepts-and-code-in-py": {
+      "title": "Attention in Transformers: Concepts and Code in PyTorch",
+      "description": "No description",
+      "tags": [
+        "architecture",
+        "course"
+      ],
+      "category": "architecture",
+      "skills": [
+        "Transformer Architecture"
+      ]
+    },
+    "embedding-models:-from-architecture-to-implementat": {
+      "title": "Embedding Models: from Architecture to Implementation",
+      "description": "No description",
+      "tags": [
+        "architecture",
+        "course"
+      ],
+      "category": "architecture",
+      "skills": [
+        "AI/ML Fundamentals"
+      ]
+    },
+    "ai-python-for-beginners": {
+      "title": "AI Python for Beginners",
+      "description": "No description",
+      "tags": [
+        "coding",
+        "course"
+      ],
+      "category": "coding",
+      "skills": [
+        "Python Programming"
+      ]
+    }
+  }
+}

@@ -1,828 +1,1311 @@
 {
   "meta": {
-    "version": "2.0.0",
-    "last_updated": "2025-12-01",
-    "total_courses": 48,
-    "base_url": "https://learn.deeplearning.ai"
+    "base_url": "https://learn.deeplearning.ai",
+    "version": "3.0.0",
+    "last_updated": "2025-12-02T12:11:04.773993",
+    "total_courses": 43,
+    "generation_method": "automated"
   },
   "courses": [
     {
-      "id": "ai-for-everyone",
-      "title": "AI for Everyone",
-      "description": "Non-technical introduction to AI concepts, strategy, and impact",
-      "url": "/courses/ai-for-everyone",
+      "id": "deeplearning.ai",
+      "title": "DeepLearning.AI",
+      "slug": "",
+      "url": "https://www.deeplearning.ai/courses/?courses_date_desc%5BrefinementList%5D%5Bcourse_type%5D%5B0%5D=Short%20Courses&courses_date_desc%5BrefinementList%5D%5Bpartnership%5D%5B0%5D=DeepLearning.AI",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
       "difficulty": "Beginner",
-      "duration_hours": 4,
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 1,
       "category": "fundamentals",
-      "subcategory": "literacy",
-      "career_paths": ["trunk"],
-      "skills_gained": ["AI literacy", "AI strategy", "Business applications"],
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["generative-ai-for-everyone", "ai-python-for-beginners"],
-      "tags": ["core", "non-technical", "strategy"],
-      "partner": "DeepLearning.AI",
-      "order": 1
-    },
-    {
-      "id": "generative-ai-for-everyone",
-      "title": "Generative AI for Everyone",
-      "description": "Understanding generative AI, LLMs, and their applications",
-      "url": "/courses/generative-ai-for-everyone",
-      "difficulty": "Beginner",
-      "duration_hours": 3,
-      "category": "fundamentals",
-      "subcategory": "literacy",
-      "career_paths": ["trunk"],
-      "skills_gained": ["Generative AI concepts", "LLM understanding", "Use cases"],
-      "prerequisites": [],
-      "recommended_next": ["chatgpt-prompt-engineering", "ai-python-for-beginners"],
-      "tags": ["core", "non-technical", "generative-ai"],
-      "partner": "DeepLearning.AI",
-      "order": 2
-    },
-    {
-      "id": "mathematics-for-ml",
-      "title": "Mathematics for Machine Learning and Data Science",
-      "description": "Essential math foundations: linear algebra, calculus, probability",
-      "url": "/courses/mathematics-for-machine-learning",
-      "difficulty": "Intermediate",
-      "duration_hours": 40,
-      "category": "fundamentals",
-      "subcategory": "math",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Linear algebra", "Calculus", "Probability", "Statistics"],
-      "prerequisites": [],
-      "recommended_next": ["machine-learning-specialization", "deep-learning-specialization"],
-      "tags": ["math", "foundations", "theory"],
-      "partner": "DeepLearning.AI",
-      "is_external_recommended": true,
-      "external_note": "Supplement with Khan Academy or 3Blue1Brown for deeper intuition",
-      "order": 3
-    },
-    {
-      "id": "machine-learning-specialization",
-      "title": "Machine Learning Specialization",
-      "description": "Comprehensive ML foundations with Andrew Ng",
-      "url": "/courses/machine-learning-specialization",
-      "difficulty": "Intermediate",
-      "duration_hours": 60,
-      "category": "fundamentals",
-      "subcategory": "ml-foundations",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Supervised learning", "Unsupervised learning", "Neural networks basics"],
-      "prerequisites": ["mathematics-for-ml"],
-      "recommended_next": ["deep-learning-specialization"],
-      "tags": ["ml", "foundations", "comprehensive"],
-      "partner": "Stanford",
-      "order": 4
+      "tags": [
+        "fundamentals",
+        "course",
+        "short-title"
+      ],
+      "recommended_next": []
     },
     {
       "id": "deep-learning-specialization",
       "title": "Deep Learning Specialization",
-      "description": "Deep dive into neural networks, CNNs, RNNs, and more",
-      "url": "/courses/deep-learning-specialization",
-      "difficulty": "Intermediate",
-      "duration_hours": 80,
+      "slug": "",
+      "url": "https://www.deeplearning.ai/courses/deep-learning-specialization/",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 2,
       "category": "fundamentals",
-      "subcategory": "deep-learning",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Neural networks", "CNNs", "RNNs", "Optimization"],
-      "prerequisites": ["machine-learning-specialization"],
-      "recommended_next": ["attention-in-transformers", "pretraining-llms"],
-      "tags": ["deep-learning", "neural-networks", "comprehensive"],
-      "partner": "DeepLearning.AI",
-      "order": 5
-    },
-    {
-      "id": "ai-python-for-beginners",
-      "title": "AI Python for Beginners",
-      "description": "Learn Python with AI assistance - modern approach to programming",
-      "url": "/courses/ai-python-for-beginners",
-      "difficulty": "Beginner",
-      "duration_hours": 6,
-      "category": "coding",
-      "subcategory": "vibe-coding",
-      "career_paths": ["trunk", "builder"],
-      "skills_gained": ["Python basics", "AI-assisted coding", "Problem solving"],
-      "prerequisites": [],
-      "recommended_next": ["vibe-coding-101", "chatgpt-prompt-engineering"],
-      "tags": ["python", "beginner", "ai-assisted"],
-      "partner": "DeepLearning.AI",
-      "order": 6
-    },
-    {
-      "id": "vibe-coding-101",
-      "title": "Vibe Coding 101 with Replit",
-      "description": "Natural language coding with AI agents",
-      "url": "/courses/vibe-coding-101",
-      "difficulty": "Beginner",
-      "duration_hours": 2,
-      "category": "coding",
-      "subcategory": "vibe-coding",
-      "career_paths": ["trunk", "builder"],
-      "skills_gained": ["Vibe coding", "AI agents for code", "Rapid prototyping"],
-      "prerequisites": [],
-      "recommended_next": ["claude-code", "genai-for-software-development"],
-      "tags": ["vibe-coding", "ai-agents", "replit"],
-      "partner": "Replit",
-      "order": 7
-    },
-    {
-      "id": "claude-code",
-      "title": "Claude Code: A Highly Agentic Coding Assistant",
-      "description": "Master agentic coding with Claude",
-      "url": "/courses/claude-code",
-      "difficulty": "Beginner",
-      "duration_hours": 2,
-      "category": "coding",
-      "subcategory": "vibe-coding",
-      "career_paths": ["trunk", "builder"],
-      "skills_gained": ["Claude Code", "Agentic development", "Terminal-based AI"],
-      "prerequisites": [],
-      "recommended_next": ["functions-tools-agents-langchain"],
-      "tags": ["claude", "agentic", "coding-assistant"],
-      "partner": "Anthropic",
-      "order": 8
-    },
-    {
-      "id": "generative-ai-with-llms",
-      "title": "Generative AI with Large Language Models",
-      "description": "Technical overview of LLM architectures and training",
-      "url": "/courses/generative-ai-with-llms",
-      "difficulty": "Intermediate",
-      "duration_hours": 16,
-      "category": "model-building",
-      "subcategory": "fundamentals",
-      "career_paths": ["trunk", "researcher"],
-      "skills_gained": ["LLM architecture", "Training concepts", "Fine-tuning basics"],
-      "prerequisites": ["ai-for-everyone"],
-      "recommended_next": ["pretraining-llms", "finetuning-llms"],
-      "tags": ["llm", "architecture", "training"],
-      "partner": "AWS",
-      "order": 9
-    },
-    {
-      "id": "chatgpt-prompt-engineering",
-      "title": "ChatGPT Prompt Engineering for Developers",
-      "description": "Master prompt engineering techniques for building applications",
-      "url": "/courses/chatgpt-prompt-engineering",
-      "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "prompt-engineering",
-      "career_paths": ["builder"],
-      "skills_gained": ["Prompt engineering", "API usage", "Best practices"],
-      "prerequisites": [],
-      "recommended_next": ["reasoning-with-o1", "functions-tools-agents-langchain"],
-      "tags": ["prompting", "chatgpt", "api"],
-      "partner": "OpenAI",
-      "order": 10
-    },
-    {
-      "id": "reasoning-with-o1",
-      "title": "Reasoning with o1",
-      "description": "Advanced reasoning techniques with OpenAI's o1 model",
-      "url": "/courses/reasoning-with-o1",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "prompt-engineering",
-      "career_paths": ["builder"],
-      "skills_gained": ["Chain of thought", "Complex reasoning", "o1 best practices"],
-      "prerequisites": ["chatgpt-prompt-engineering"],
-      "recommended_next": ["functions-tools-agents-langchain"],
-      "tags": ["reasoning", "o1", "advanced-prompting"],
-      "partner": "OpenAI",
-      "order": 11
-    },
-    {
-      "id": "functions-tools-agents-langchain",
-      "title": "Functions, Tools and Agents with LangChain",
-      "description": "Build AI applications with function calling and agents",
-      "url": "/courses/functions-tools-agents-langchain",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "agents",
       "subcategory": "general",
-      "career_paths": ["builder"],
-      "skills_gained": ["Function calling", "Tool use", "Agent basics", "LangChain"],
-      "prerequisites": ["chatgpt-prompt-engineering"],
-      "recommended_next": ["langchain-chat-with-data", "vector-databases-applications"],
-      "tags": ["langchain", "agents", "function-calling"],
-      "partner": "LangChain",
-      "order": 12
-    },
-    {
-      "id": "vector-databases-applications",
-      "title": "Vector Databases: from Embeddings to Applications",
-      "description": "Understand and use vector databases for AI applications",
-      "url": "/courses/vector-databases-embeddings-applications",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Vector databases", "Embeddings", "Similarity search"],
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["building-advanced-rag", "knowledge-graphs-rag"],
-      "tags": ["vector-db", "embeddings", "rag"],
-      "partner": "Weaviate",
-      "order": 13
+      "tags": [
+        "fundamentals",
+        "specialization",
+        "short-title"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "building-advanced-rag",
-      "title": "Building and Evaluating Advanced RAG",
-      "description": "Advanced RAG techniques and evaluation methods",
-      "url": "/courses/building-evaluating-advanced-rag",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Advanced RAG", "Evaluation", "Query optimization"],
-      "prerequisites": ["vector-databases-applications"],
-      "recommended_next": ["knowledge-graphs-rag", "multi-ai-agent-systems-crewai"],
-      "tags": ["rag", "evaluation", "advanced"],
-      "partner": "Truera",
-      "order": 14
-    },
-    {
-      "id": "knowledge-graphs-rag",
-      "title": "Knowledge Graphs for RAG",
-      "description": "Combine knowledge graphs with RAG for better retrieval",
-      "url": "/courses/knowledge-graphs-rag",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Knowledge graphs", "Graph RAG", "Structured retrieval"],
-      "prerequisites": ["building-advanced-rag"],
-      "recommended_next": ["multi-ai-agent-systems-crewai"],
-      "tags": ["knowledge-graphs", "rag", "neo4j"],
-      "partner": "Neo4j",
-      "order": 15
-    },
-    {
-      "id": "multi-ai-agent-systems-crewai",
-      "title": "Multi AI Agent Systems with crewAI",
-      "description": "Build collaborative multi-agent systems",
-      "url": "/courses/multi-ai-agent-systems-crewai",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "agents",
-      "subcategory": "multi-agents",
-      "career_paths": ["builder"],
-      "skills_gained": ["Multi-agent systems", "CrewAI", "Agent collaboration"],
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "recommended_next": ["building-ai-voice-agents", "llmops"],
-      "tags": ["multi-agent", "crewai", "collaboration"],
-      "partner": "crewAI",
-      "order": 16
-    },
-    {
-      "id": "building-ai-voice-agents",
-      "title": "Building AI Voice Agents for Production",
-      "description": "Create production-ready voice AI applications",
-      "url": "/courses/building-ai-voice-agents-production",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "agents",
-      "subcategory": "agent-applications",
-      "career_paths": ["builder"],
-      "skills_gained": ["Voice AI", "Production deployment", "Real-time processing"],
-      "prerequisites": ["multi-ai-agent-systems-crewai"],
-      "recommended_next": ["llmops"],
-      "tags": ["voice", "production", "real-time"],
-      "partner": "Deepgram",
-      "order": 17
-    },
-    {
-      "id": "llmops",
-      "title": "LLMOps",
-      "description": "Operationalize LLM applications at scale",
-      "url": "/courses/llmops",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "applications",
-      "career_paths": ["builder", "enterprise"],
-      "skills_gained": ["LLM operations", "Monitoring", "Deployment"],
-      "prerequisites": [],
-      "recommended_next": ["efficiently-serving-llms"],
-      "tags": ["ops", "deployment", "monitoring"],
-      "partner": "Google",
-      "order": 18
-    },
-    {
-      "id": "efficiently-serving-llms",
-      "title": "Efficiently Serving LLMs",
-      "description": "Optimize LLM inference and serving",
-      "url": "/courses/efficiently-serving-llms",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "optimization",
-      "career_paths": ["builder", "researcher"],
-      "skills_gained": ["Inference optimization", "Serving patterns", "Cost reduction"],
-      "prerequisites": [],
-      "recommended_next": ["quantization-fundamentals"],
-      "tags": ["serving", "optimization", "inference"],
-      "partner": "Predibase",
-      "order": 19
-    },
-    {
-      "id": "attention-in-transformers",
-      "title": "Attention in Transformers: Concepts and Code in PyTorch",
-      "description": "Deep dive into attention mechanisms with code",
-      "url": "/courses/attention-in-transformers",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "architecture",
-      "subcategory": "transformers",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Attention mechanism", "Transformer architecture", "PyTorch"],
-      "prerequisites": ["deep-learning-specialization"],
-      "recommended_next": ["how-diffusion-models-work", "pretraining-llms"],
-      "tags": ["attention", "transformers", "pytorch"],
-      "partner": "DeepLearning.AI",
-      "order": 20
-    },
-    {
-      "id": "how-diffusion-models-work",
-      "title": "How Diffusion Models Work",
-      "description": "Understand diffusion model theory and implementation",
-      "url": "/courses/how-diffusion-models-work",
-      "difficulty": "Intermediate",
-      "duration_hours": 2,
-      "category": "architecture",
-      "subcategory": "diffusion",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Diffusion models", "Image generation", "Denoising"],
-      "prerequisites": ["deep-learning-specialization"],
-      "recommended_next": ["quantization-in-depth"],
-      "tags": ["diffusion", "image-generation", "theory"],
-      "partner": "DeepLearning.AI",
-      "order": 21
-    },
-    {
-      "id": "pretraining-llms",
-      "title": "Pretraining LLMs",
-      "description": "Learn how to pretrain language models from scratch",
-      "url": "/courses/pretraining-llms",
-      "difficulty": "Advanced",
-      "duration_hours": 2,
-      "category": "model-building",
-      "subcategory": "training",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Pretraining", "Data preparation", "Training infrastructure"],
-      "prerequisites": ["generative-ai-with-llms"],
-      "recommended_next": ["finetuning-llms"],
-      "tags": ["pretraining", "llm", "training"],
-      "partner": "Upstage",
-      "order": 22
-    },
-    {
-      "id": "finetuning-llms",
-      "title": "Finetuning Large Language Models",
-      "description": "Master LLM fine-tuning techniques",
-      "url": "/courses/finetuning-large-language-models",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "post-training",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Fine-tuning", "LoRA", "Dataset preparation"],
-      "prerequisites": ["pretraining-llms"],
-      "recommended_next": ["rlhf", "reinforcement-finetuning-grpo"],
-      "tags": ["finetuning", "llm", "lora"],
-      "partner": "Lamini",
-      "order": 23
-    },
-    {
-      "id": "rlhf",
-      "title": "Reinforcement Learning From Human Feedback",
-      "description": "Align models with human preferences using RLHF",
-      "url": "/courses/reinforcement-learning-from-human-feedback",
-      "difficulty": "Advanced",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "post-training",
-      "career_paths": ["researcher"],
-      "skills_gained": ["RLHF", "Reward modeling", "PPO", "Alignment"],
-      "prerequisites": ["finetuning-llms"],
-      "recommended_next": ["reinforcement-finetuning-grpo"],
-      "tags": ["rlhf", "alignment", "reinforcement-learning"],
-      "partner": "Google",
-      "order": 24
-    },
-    {
-      "id": "reinforcement-finetuning-grpo",
-      "title": "Reinforcement Fine-Tuning LLMs with GRPO",
-      "description": "Advanced reinforcement fine-tuning with GRPO",
-      "url": "/courses/reinforcement-finetuning-grpo",
-      "difficulty": "Advanced",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "post-training",
-      "career_paths": ["researcher"],
-      "skills_gained": ["GRPO", "Advanced RL", "Efficient training"],
-      "prerequisites": ["rlhf"],
-      "recommended_next": ["quantization-in-depth"],
-      "tags": ["grpo", "reinforcement-learning", "advanced"],
-      "partner": "DeepLearning.AI",
-      "order": 25
-    },
-    {
-      "id": "quantization-fundamentals",
-      "title": "Quantization Fundamentals with Hugging Face",
-      "description": "Learn model quantization basics",
-      "url": "/courses/quantization-fundamentals",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "compression",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Quantization basics", "Hugging Face tools", "Model compression"],
-      "prerequisites": [],
-      "recommended_next": ["quantization-in-depth"],
-      "tags": ["quantization", "compression", "huggingface"],
-      "partner": "Hugging Face",
-      "order": 26
-    },
-    {
-      "id": "quantization-in-depth",
-      "title": "Quantization in Depth",
-      "description": "Advanced quantization techniques and theory",
-      "url": "/courses/quantization-in-depth",
-      "difficulty": "Advanced",
-      "duration_hours": 2,
-      "category": "model-building",
-      "subcategory": "compression",
-      "career_paths": ["researcher"],
-      "skills_gained": ["Advanced quantization", "Custom quantization", "Performance tuning"],
-      "prerequisites": ["quantization-fundamentals"],
-      "recommended_next": ["automated-testing-llmops"],
-      "tags": ["quantization", "advanced", "optimization"],
-      "partner": "Hugging Face",
-      "order": 27
-    },
-    {
-      "id": "red-teaming-llm-applications",
-      "title": "Red Teaming LLM Applications",
-      "description": "Security testing and vulnerability assessment for LLM apps",
-      "url": "/courses/red-teaming-llm-applications",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "security",
-      "subcategory": "security",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Red teaming", "Security testing", "Vulnerability assessment"],
-      "prerequisites": [],
-      "recommended_next": ["quality-safety-llm-applications"],
-      "tags": ["security", "red-teaming", "testing"],
-      "partner": "Giskard",
-      "order": 28
-    },
-    {
-      "id": "quality-safety-llm-applications",
-      "title": "Quality and Safety for LLM Applications",
-      "description": "Build safe and reliable LLM applications",
-      "url": "/courses/quality-safety-llm-applications",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "security",
-      "subcategory": "safety",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Safety guardrails", "Quality metrics", "Risk mitigation"],
-      "prerequisites": [],
-      "recommended_next": ["ai-safety-guardrails", "intro-federated-learning"],
-      "tags": ["safety", "quality", "guardrails"],
-      "partner": "Whylabs",
-      "order": 29
-    },
-    {
-      "id": "intro-federated-learning",
-      "title": "Intro to Federated Learning",
-      "description": "Learn privacy-preserving distributed machine learning",
-      "url": "/courses/intro-federated-learning",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "training",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Federated learning", "Privacy", "Distributed training"],
-      "prerequisites": [],
-      "recommended_next": ["federated-finetuning-llms"],
-      "tags": ["federated", "privacy", "distributed"],
-      "partner": "Flower Labs",
-      "order": 30
-    },
-    {
-      "id": "federated-finetuning-llms",
-      "title": "Federated Fine-tuning of LLMs with Private Data",
-      "description": "Fine-tune LLMs while preserving data privacy",
-      "url": "/courses/federated-finetuning-llms",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "post-training",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Privacy-preserving fine-tuning", "Federated LLM training"],
-      "prerequisites": ["intro-federated-learning"],
-      "recommended_next": ["serverless-agentic-workflows-bedrock"],
-      "tags": ["federated", "privacy", "finetuning"],
-      "partner": "Flower Labs",
-      "order": 31
-    },
-    {
-      "id": "serverless-agentic-workflows-bedrock",
-      "title": "Serverless Agentic Workflows with Amazon Bedrock",
-      "description": "Build scalable serverless AI applications",
-      "url": "/courses/serverless-agentic-workflows-bedrock",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "agentic-ai",
-      "career_paths": ["enterprise", "builder"],
-      "skills_gained": ["Serverless AI", "AWS Bedrock", "Scalable workflows"],
-      "prerequisites": [],
-      "recommended_next": ["semantic-kernel-plugins"],
-      "tags": ["serverless", "aws", "bedrock"],
-      "partner": "AWS",
-      "order": 32
-    },
-    {
-      "id": "semantic-kernel-plugins",
-      "title": "How Business Thinkers Can Start Building AI Plugins With Semantic Kernel",
-      "description": "Build AI plugins for enterprise integration",
-      "url": "/courses/semantic-kernel-plugins",
+      "id": "💻- -accessing-utils-file-and-helper-functions",
+      "title": "💻   Accessing Utils File and Helper Functions",
+      "slug": "",
+      "url": "https://www.deeplearning.ai/courses/?utm_source=dlai-learn-platform&utm_medium=referral-sc&utm_campaign=appendix-tips-help",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
       "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "applications",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Semantic Kernel", "Plugin development", "Enterprise AI"],
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 3,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["ai-for-good"],
-      "tags": ["semantic-kernel", "plugins", "enterprise"],
-      "partner": "Microsoft",
-      "order": 33
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "ai-for-good",
-      "title": "AI for Good",
-      "description": "Apply AI for social impact and sustainability",
-      "url": "/courses/ai-for-good",
+      "id": "building-toward-computer-use-with-anthropic",
+      "title": "Building toward Computer Use with Anthropic",
+      "slug": "",
+      "url": "/courses/building-toward-computer-use-with-anthropic",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
       "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "ethical-ai",
-      "subcategory": "impact",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Social impact AI", "Sustainability", "Ethical considerations"],
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 4,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["carbon-aware-computing"],
-      "tags": ["ethics", "social-impact", "sustainability"],
-      "partner": "DeepLearning.AI",
-      "order": 34
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "carbon-aware-computing",
-      "title": "Carbon Aware Computing for GenAI developers",
-      "description": "Build environmentally conscious AI applications",
-      "url": "/courses/carbon-aware-computing",
-      "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "ethical-ai",
-      "subcategory": "sustainability",
-      "career_paths": ["enterprise"],
-      "skills_gained": ["Carbon awareness", "Green AI", "Efficiency optimization"],
-      "prerequisites": [],
-      "recommended_next": [],
-      "tags": ["carbon", "sustainability", "green-ai"],
-      "partner": "Google",
-      "order": 35
-    },
-    {
-      "id": "ai-agents-langgraph",
-      "title": "AI Agents in LangGraph",
-      "description": "Build stateful AI agents with LangGraph",
-      "url": "/courses/ai-agents-langgraph",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["LangGraph", "Stateful agents", "Graph-based workflows"],
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "recommended_next": ["long-term-agentic-memory-langgraph"],
-      "tags": ["langgraph", "agents", "stateful"],
-      "partner": "LangChain",
-      "order": 36
-    },
-    {
-      "id": "long-term-agentic-memory-langgraph",
-      "title": "Long-Term Agentic Memory With LangGraph",
-      "description": "Implement persistent memory for AI agents",
-      "url": "/courses/long-term-agentic-memory-langgraph",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "context-extension",
-      "career_paths": ["builder"],
-      "skills_gained": ["Agent memory", "Persistence", "Context management"],
-      "prerequisites": ["ai-agents-langgraph"],
-      "recommended_next": ["llms-as-operating-systems"],
-      "tags": ["memory", "langgraph", "persistence"],
-      "partner": "LangChain",
-      "order": 37
-    },
-    {
-      "id": "mcp-anthropic",
+      "id": "mcp:-build-rich-context-ai-apps-with-anthropic",
       "title": "MCP: Build Rich-Context AI Apps with Anthropic",
-      "description": "Model Context Protocol for enhanced AI applications",
-      "url": "/courses/mcp-anthropic",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "mcp-acp",
-      "career_paths": ["builder"],
-      "skills_gained": ["MCP protocol", "Context management", "Anthropic integration"],
-      "prerequisites": [],
-      "recommended_next": ["acp-agent-communication-protocol"],
-      "tags": ["mcp", "anthropic", "context"],
-      "partner": "Anthropic",
-      "order": 38
-    },
-    {
-      "id": "pytorch-for-deep-learning",
-      "title": "PyTorch for Deep Learning",
-      "description": "Master PyTorch for building neural networks",
-      "url": "/courses/pytorch-for-deep-learning",
-      "difficulty": "Intermediate",
-      "duration_hours": 3,
-      "category": "model-building",
-      "subcategory": "fundamentals",
-      "career_paths": ["researcher"],
-      "skills_gained": ["PyTorch", "Neural network implementation", "Training loops"],
-      "prerequisites": ["deep-learning-specialization"],
-      "recommended_next": ["attention-in-transformers"],
-      "tags": ["pytorch", "deep-learning", "implementation"],
-      "partner": "DeepLearning.AI",
-      "order": 39
-    },
-    {
-      "id": "langchain-chat-with-data",
-      "title": "LangChain Chat with Your Data",
-      "description": "Build conversational apps over your documents",
-      "url": "/courses/langchain-chat-with-your-data",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Document Q&A", "Chat applications", "LangChain"],
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "recommended_next": ["building-advanced-rag"],
-      "tags": ["langchain", "chat", "documents"],
-      "partner": "LangChain",
-      "order": 40
-    },
-    {
-      "id": "building-agentic-rag-llamaindex",
-      "title": "Building Agentic RAG with Llamaindex",
-      "description": "Create agentic RAG systems with LlamaIndex",
-      "url": "/courses/building-agentic-rag-llamaindex",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Agentic RAG", "LlamaIndex", "Autonomous retrieval"],
-      "prerequisites": ["vector-databases-applications"],
-      "recommended_next": ["building-advanced-rag"],
-      "tags": ["llamaindex", "agentic", "rag"],
-      "partner": "LlamaIndex",
-      "order": 41
-    },
-    {
-      "id": "event-driven-agentic-document-workflows",
-      "title": "Event-Driven Agentic Document Workflows",
-      "description": "Build event-driven agentic workflows for document processing with RAG and human-in-the-loop",
-      "url": "/courses/event-driven-agentic-document-workflows",
+      "slug": "",
+      "url": "/courses/mcp-build-rich-context-ai-apps-with-anthropic",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
       "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "agents",
-      "subcategory": "rag",
-      "career_paths": ["builder"],
-      "skills_gained": ["Event-driven architecture", "Document processing", "Human-in-the-loop"],
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 10,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["building-agentic-rag-llamaindex"],
-      "tags": ["event-driven", "documents", "llamaindex"],
-      "partner": "LlamaIndex",
-      "order": 42
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "prompt-engineering-llama",
-      "title": "Prompt Engineering with Llama 2&3",
-      "description": "Optimize prompts for Llama models",
-      "url": "/courses/prompt-engineering-llama",
+      "id": "machine-learning-in-production",
+      "title": "Machine Learning in Production",
+      "slug": "",
+      "url": "/courses/machine-learning-in-production",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
       "difficulty": "Beginner",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "prompt-engineering",
-      "career_paths": ["builder"],
-      "skills_gained": ["Llama prompting", "Open source LLMs", "Prompt optimization"],
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 14,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["building-with-llama-4"],
-      "tags": ["llama", "prompting", "meta"],
-      "partner": "Meta",
-      "order": 43
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "jupyter-ai:-ai-coding-in-notebooks",
+      "title": "Jupyter AI: AI Coding in Notebooks",
+      "slug": "",
+      "url": "/courses/jupyter-ai-coding-in-notebooks",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 15,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "vibe-coding-101-with-replit",
+      "title": "Vibe Coding 101 with Replit",
+      "slug": "",
+      "url": "/courses/vibe-coding-101-with-replit",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 20,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "generative-ai-for-everyoneㅤ",
+      "title": "Generative AI for Everyoneㅤ",
+      "slug": "",
+      "url": "/courses/generative-ai-for-everyone",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 22,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "fast-prototyping-of-genai-apps-with-streamlit",
+      "title": "Fast Prototyping of GenAI Apps with Streamlit",
+      "slug": "",
+      "url": "/courses/fast-prototyping-of-genai-apps-with-streamlit",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 23,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
       "id": "building-with-llama-4",
       "title": "Building with Llama 4",
-      "description": "Build applications with the latest Llama models",
+      "slug": "",
       "url": "/courses/building-with-llama-4",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-use",
-      "subcategory": "model-specific",
-      "career_paths": ["builder"],
-      "skills_gained": ["Llama 4", "Model capabilities", "Application development"],
-      "prerequisites": ["prompt-engineering-llama"],
-      "recommended_next": ["multimodal-llama-3-2"],
-      "tags": ["llama", "meta", "applications"],
-      "partner": "Meta",
-      "order": 44
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 24,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "automated-testing-llmops",
-      "title": "Automated Testing for LLMOps",
-      "description": "Implement automated testing for LLM applications",
-      "url": "/courses/automated-testing-llmops",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
-      "category": "model-building",
-      "subcategory": "optimization",
-      "career_paths": ["researcher", "builder"],
-      "skills_gained": ["Automated testing", "LLM evaluation", "CI/CD for AI"],
+      "id": "build-ai-apps-with-mcp-server:-working-with-box-fi",
+      "title": "Build AI Apps with MCP Server: Working with Box Files",
+      "slug": "",
+      "url": "/courses/build-ai-apps-with-mcp-server-working-with-box-files",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 26,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["evaluating-ai-agents"],
-      "tags": ["testing", "automation", "llmops"],
-      "partner": "CircleCI",
-      "order": 45
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "orchestrating-workflows-for-genai-applications",
+      "title": "Orchestrating Workflows for GenAI Applications",
+      "slug": "",
+      "url": "/courses/orchestrating-workflows-for-genai-applications",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 30,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "build-long-context-ai-apps-with-jamba",
+      "title": "Build Long-Context AI Apps with Jamba",
+      "slug": "",
+      "url": "/courses/build-long-context-ai-apps-with-jamba",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 36,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "reasoning-with-o1",
+      "title": "Reasoning with o1",
+      "slug": "",
+      "url": "/courses/reasoning-with-o1",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 39,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course",
+        "short-title"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "collaborative-writing-and-coding-with-openai-canva",
+      "title": "Collaborative Writing and Coding with OpenAI Canvas",
+      "slug": "",
+      "url": "/courses/collaborative-writing-and-coding-with-openai-canvas",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 40,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "introducing-multimodal-llama-3.2",
+      "title": "Introducing Multimodal Llama 3.2",
+      "slug": "",
+      "url": "/courses/introducing-multimodal-llama-3-2",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 41,
+      "category": "fundamentals",
+      "subcategory": "general",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "fundamentals",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "chatgpt-prompt-engineering-for-developers",
+      "title": "ChatGPT Prompt Engineering for Developers",
+      "slug": "",
+      "url": "/courses/chatgpt-prompt-eng",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 5,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Prompt Engineering"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "fine-tuning-&-rl-for-llms:-intro-to-post-training",
+      "title": "Fine-tuning & RL for LLMs: Intro to Post-training",
+      "slug": "",
+      "url": "/courses/fine-tuning-and-reinforcement-learning-for-llms-intro-to-post-training",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 16,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Fine-tuning"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "generative-ai-with-large-language-models",
+      "title": "Generative AI with Large Language Models",
+      "slug": "",
+      "url": "/courses/generative-ai-with-llms",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 17,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "pydantic-for-llm-workflows",
+      "title": "Pydantic for LLM Workflows",
+      "slug": "",
+      "url": "/courses/pydantic-for-llm-workflows",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 28,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "post-training-of-llms",
+      "title": "Post-training of LLMs",
+      "slug": "",
+      "url": "/courses/post-training-of-llms",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 31,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course",
+        "short-title"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "reinforcement-fine-tuning-llms-with-grpo",
+      "title": "Reinforcement Fine-Tuning LLMs With GRPO",
+      "slug": "",
+      "url": "/courses/reinforcement-fine-tuning-llms-grpo",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 32,
+      "category": "model-use",
+      "subcategory": "prompting",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Fine-tuning"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "model-use",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
       "id": "evaluating-ai-agents",
       "title": "Evaluating AI Agents",
-      "description": "Comprehensive agent evaluation methodologies",
+      "slug": "",
       "url": "/courses/evaluating-ai-agents",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 6,
       "category": "agents",
-      "subcategory": "optimization",
-      "career_paths": ["builder"],
-      "skills_gained": ["Agent evaluation", "Metrics", "Benchmarking"],
-      "prerequisites": ["multi-ai-agent-systems-crewai"],
-      "recommended_next": [],
-      "tags": ["evaluation", "agents", "metrics"],
-      "partner": "AgentOps",
-      "order": 46
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course",
+        "short-title"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "dspy-agentic-apps",
+      "id": "acp:-agent-communication-protocol",
+      "title": "ACP: Agent Communication Protocol",
+      "slug": "",
+      "url": "/courses/acp-agent-communication-protocol",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 8,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "advanced-retrieval-for-ai-with-chroma",
+      "title": "Advanced Retrieval for AI with Chroma",
+      "slug": "",
+      "url": "/courses/advanced-retrieval-for-ai",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 11,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "semantic-caching-for-ai-agents",
+      "title": "Semantic Caching for AI Agents",
+      "slug": "",
+      "url": "/courses/semantic-caching-for-ai-agents",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 12,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "design,-develop,-and-deploy-multi-agent-systems--w",
+      "title": "Design, Develop, and Deploy Multi-Agent Systems  with CrewAI",
+      "slug": "",
+      "url": "/courses/design-develop-and-deploy-multi-agent-systems-with-crewai",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 13,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "agentic-ai",
+      "title": "Agentic AI",
+      "slug": "",
+      "url": "/courses/agentic-ai",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 18,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course",
+        "short-title"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "claude-code:-a-highly-agentic-coding-assistant",
+      "title": "Claude Code: A Highly Agentic Coding Assistant",
+      "slug": "",
+      "url": "/courses/claude-code-a-highly-agentic-coding-assistant",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 19,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "build-apps-with-windsurf’s-ai-coding-agents",
+      "title": "Build Apps with Windsurf’s AI Coding Agents",
+      "slug": "",
+      "url": "/courses/build-apps-with-windsurfs-ai-coding-agents",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 21,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "long-term-agentic-memory-with-langgraph",
+      "title": "Long-Term Agentic Memory With LangGraph",
+      "slug": "",
+      "url": "/courses/long-term-agentic-memory-with-langgraph",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 25,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "agentic-knowledge-graph-construction",
+      "title": "Agentic Knowledge Graph Construction",
+      "slug": "",
+      "url": "/courses/agentic-knowledge-graph-construction",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 27,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "retrieval-augmented-generation-(rag)",
+      "title": "Retrieval Augmented Generation (RAG)",
+      "slug": "",
+      "url": "/courses/retrieval-augmented-generation",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 29,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Retrieval Augmented Generation"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "knowledge-graphs-for-ai-agent:-api-discovery",
+      "title": "Knowledge Graphs for AI Agent: API Discovery",
+      "slug": "",
+      "url": "/courses/knowledge-graphs-for-ai-agent-api-discovery",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 33,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI",
+        "API Integration"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "dspy:-build-and-optimize-agentic-apps",
       "title": "DSPy: Build and Optimize Agentic Apps",
-      "description": "Programmatic approach to prompt optimization",
-      "url": "/courses/dspy-agentic-apps",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
+      "slug": "",
+      "url": "/courses/dspy-build-optimize-agentic-apps",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 34,
       "category": "agents",
-      "subcategory": "optimization",
-      "career_paths": ["builder"],
-      "skills_gained": ["DSPy", "Prompt optimization", "Declarative AI"],
-      "prerequisites": [],
-      "recommended_next": ["evaluating-ai-agents"],
-      "tags": ["dspy", "optimization", "declarative"],
-      "partner": "Databricks",
-      "order": 47
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
     },
     {
-      "id": "ai-safety-guardrails",
-      "title": "AI Safety & Guardrails",
-      "description": "Implement safety measures for AI applications",
-      "url": "/courses/ai-safety-guardrails",
-      "difficulty": "Intermediate",
-      "duration_hours": 1,
+      "id": "event-driven-agentic-document-workflows",
+      "title": "Event-Driven Agentic Document Workflows",
+      "slug": "",
+      "url": "/courses/event-driven-agentic-document-workflows",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 35,
       "category": "agents",
-      "subcategory": "security",
-      "career_paths": ["enterprise", "builder"],
-      "skills_gained": ["Safety guardrails", "Content filtering", "Risk mitigation"],
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "building-multimodal-search-and-rag",
+      "title": "Building Multimodal Search and RAG",
+      "slug": "",
+      "url": "/courses/building-multimodal-search-and-rag",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 42,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Retrieval Augmented Generation"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "building-ai-browser-agents",
+      "title": "Building AI Browser Agents",
+      "slug": "",
+      "url": "/courses/building-ai-browser-agents",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 43,
+      "category": "agents",
+      "subcategory": "advanced-patterns",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Agentic AI"
+      ],
+      "prerequisites": [
+        "Generative AI for Everyone"
+      ],
+      "tags": [
+        "agents",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "safe-and-reliable-ai-via-guardrails",
+      "title": "Safe and reliable AI via guardrails",
+      "slug": "",
+      "url": "/courses/safe-and-reliable-ai-via-guardrails",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 7,
+      "category": "security",
+      "subcategory": "safety",
+      "career_paths": [
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
       "prerequisites": [],
-      "recommended_next": ["red-teaming-llm-applications"],
-      "tags": ["safety", "guardrails", "nemo"],
-      "partner": "NVIDIA",
-      "order": 48
+      "tags": [
+        "security",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "attention-in-transformers:-concepts-and-code-in-py",
+      "title": "Attention in Transformers: Concepts and Code in PyTorch",
+      "slug": "",
+      "url": "/courses/attention-in-transformers-concepts-and-code-in-pytorch",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 9,
+      "category": "architecture",
+      "subcategory": "internals",
+      "career_paths": [
+        "researcher",
+        "trunk"
+      ],
+      "skills_gained": [
+        "Transformer Architecture"
+      ],
+      "prerequisites": [
+        "Mathematics for ML"
+      ],
+      "tags": [
+        "architecture",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "embedding-models:-from-architecture-to-implementat",
+      "title": "Embedding Models: from Architecture to Implementation",
+      "slug": "",
+      "url": "/courses/embedding-models-from-architecture-to-implementation",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 38,
+      "category": "architecture",
+      "subcategory": "internals",
+      "career_paths": [
+        "researcher",
+        "trunk"
+      ],
+      "skills_gained": [
+        "AI/ML Fundamentals"
+      ],
+      "prerequisites": [
+        "Mathematics for ML"
+      ],
+      "tags": [
+        "architecture",
+        "course"
+      ],
+      "recommended_next": []
+    },
+    {
+      "id": "ai-python-for-beginners",
+      "title": "AI Python for Beginners",
+      "slug": "",
+      "url": "/courses/ai-python-for-beginners",
+      "description": "No description",
+      "partner": "",
+      "level": "beginner",
+      "difficulty": "Beginner",
+      "duration_hours": 10,
+      "url_type": "course",
+      "status": "active",
+      "order": 37,
+      "category": "coding",
+      "subcategory": "development",
+      "career_paths": [
+        "trunk",
+        "practitioner"
+      ],
+      "skills_gained": [
+        "Python Programming"
+      ],
+      "prerequisites": [],
+      "tags": [
+        "coding",
+        "course"
+      ],
+      "recommended_next": []
     }
-  ]
+  ],
+  "statistics": {
+    "by_category": {
+      "fundamentals": 17,
+      "model-use": 6,
+      "agents": 16,
+      "security": 1,
+      "architecture": 2,
+      "coding": 1
+    },
+    "by_difficulty": {
+      "Beginner": 43
+    },
+    "by_partner": {
+      "": 43
+    }
+  }
 }

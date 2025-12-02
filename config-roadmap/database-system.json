@@ -1,0 +1,240 @@
+{
+  "system": {
+    "name": "Automated Course Database Generation",
+    "version": "1.0.0",
+    "description": "Fully automated pipeline from web scraping to view-ready JSON files",
+    "last_updated": "2025-12-02"
+  },
+  "pipeline": {
+    "stages": [
+      {
+        "id": 1,
+        "name": "Scrape",
+        "script": "tests/scrapers/scrape_deeplearning_courses_final.py",
+        "input": "https://learn.deeplearning.ai/?tab=1",
+        "output": "tests/data/deeplearning_scraped_courses.json",
+        "description": "Extract 107+ courses from website"
+      },
+      {
+        "id": 2,
+        "name": "Process",
+        "script": "tests/scrapers/generate_all_databases.py",
+        "input": "tests/data/deeplearning_scraped_courses.json",
+        "output": "config-roadmap/courses.json (+ 10 more)",
+        "description": "Normalize, enrich, and organize data"
+      },
+      {
+        "id": 3,
+        "name": "Generate",
+        "script": "tests/scrapers/generate_all_databases.py",
+        "input": "Processed data",
+        "output": "All JSON files in config-roadmap/",
+        "description": "Create optimized files for each view"
+      },
+      {
+        "id": 4,
+        "name": "Validate",
+        "script": "tests/scrapers/workflow_orchestrator.py",
+        "input": "Generated JSON files",
+        "output": "Validation report",
+        "description": "Verify data integrity"
+      },
+      {
+        "id": 5,
+        "name": "Deploy",
+        "script": "tests/scrapers/workflow_orchestrator.py",
+        "input": "Validated files",
+        "output": "DATA_SYNC_REPORT.json",
+        "description": "Finalize and report results"
+      }
+    ]
+  },
+  "output_files": {
+    "core": [
+      {
+        "filename": "courses.json",
+        "purpose": "Main course catalog with full metadata",
+        "used_by": ["All views"],
+        "size_estimate": "~200KB",
+        "update_frequency": "Daily"
+      },
+      {
+        "filename": "categories.json",
+        "purpose": "Category definitions and metadata",
+        "used_by": ["Cards view", "Tree view", "Sunburst view"],
+        "size_estimate": "~5KB",
+        "update_frequency": "Weekly"
+      },
+      {
+        "filename": "paths.json",
+        "purpose": "Career paths and learning paths",
+        "used_by": ["Tree view", "Graph view", "Timeline view"],
+        "size_estimate": "~10KB",
+        "update_frequency": "Weekly"
+      },
+      {
+        "filename": "relationships.json",
+        "purpose": "Course prerequisites and recommendations",
+        "used_by": ["Network view", "Graph view"],
+        "size_estimate": "~50KB",
+        "update_frequency": "Daily"
+      },
+      {
+        "filename": "search-index.json",
+        "purpose": "Full-text search index",
+        "used_by": ["Search functionality"],
+        "size_estimate": "~150KB",
+        "update_frequency": "Daily"
+      }
+    ],
+    "view_specific": [
+      {
+        "filename": "views/cards-view.json",
+        "purpose": "Optimized for cards grid layout",
+        "view": "Cards View",
+        "special_fields": ["card_color", "grid_position"]
+      },
+      {
+        "filename": "views/tree-view.json",
+        "purpose": "Hierarchical tree structure",
+        "view": "Tree View",
+        "special_fields": ["parent_id", "children", "depth"]
+      },
+      {
+        "filename": "views/graph-view.json",
+        "purpose": "Node-link relationship graph",
+        "view": "Graph View",
+        "special_fields": ["nodes", "links", "physics"]
+      },
+      {
+        "filename": "views/network-view.json",
+        "purpose": "Network visualization data",
+        "view": "Network View",
+        "special_fields": ["connections", "clusters"]
+      },
+      {
+        "filename": "views/timeline-view.json",
+        "purpose": "Progression timeline data",
+        "view": "Timeline View",
+        "special_fields": ["stage", "duration", "sequence"]
+      },
+      {
+        "filename": "views/kanban-view.json",
+        "purpose": "Kanban board stage data",
+        "view": "Kanban View",
+        "special_fields": ["stage", "column", "order"]
+      },
+      {
+        "filename": "views/heatmap-view.json",
+        "purpose": "Matrix/heatmap visualization",
+        "view": "Heatmap View",
+        "special_fields": ["row", "column", "value"]
+      },
+      {
+        "filename": "views/sunburst-view.json",
+        "purpose": "Hierarchical sunburst diagram",
+        "view": "Sunburst View",
+        "special_fields": ["size", "color", "hierarchy"]
+      },
+      {
+        "filename": "views/index-view.json",
+        "purpose": "Quick reference index",
+        "view": "Index View",
+        "special_fields": ["index_letter", "quick_link"]
+      }
+    ]
+  },
+  "data_enrichment": {
+    "auto_categorization": {
+      "rules": 9,
+      "categories": [
+        "agents",
+        "model-use",
+        "model-building",
+        "architecture",
+        "coding",
+        "security",
+        "ethical-ai",
+        "optimization",
+        "fundamentals"
+      ]
+    },
+    "skill_extraction": {
+      "enabled": true,
+      "method": "title_and_partner_analysis",
+      "skills_per_course": "2-5"
+    },
+    "career_path_assignment": {
+      "enabled": true,
+      "paths": ["trunk", "researcher", "engineer", "practitioner"]
+    },
+    "relationship_calculation": {
+      "prerequisites": true,
+      "recommendations": true,
+      "learning_sequences": true
+    }
+  },
+  "automation": {
+    "triggers": [
+      {
+        "event": "manual",
+        "command": "python tests/scrapers/workflow_orchestrator.py",
+        "description": "Run full sync manually"
+      },
+      {
+        "event": "schedule",
+        "frequency": "daily",
+        "time": "02:00 UTC",
+        "description": "Automatic daily update"
+      },
+      {
+        "event": "github_push",
+        "branch": "master",
+        "description": "Trigger on master branch update"
+      },
+      {
+        "event": "manual_api",
+        "endpoint": "/api/sync",
+        "description": "REST API trigger"
+      }
+    ]
+  },
+  "caching": {
+    "strategy": "aggressive",
+    "cache_busting": "version_numbers",
+    "ttl_seconds": 86400,
+    "files": [
+      "courses.json",
+      "categories.json",
+      "paths.json",
+      "relationships.json",
+      "search-index.json"
+    ]
+  },
+  "monitoring": {
+    "health_checks": [
+      {
+        "file": "courses.json",
+        "min_courses": 100,
+        "check_interval_minutes": 60
+      },
+      {
+        "file": "categories.json",
+        "min_categories": 5,
+        "check_interval_minutes": 1440
+      }
+    ],
+    "alerts": [
+      "file_missing",
+      "file_corrupted",
+      "sync_failure",
+      "data_validation_error"
+    ]
+  },
+  "version_control": {
+    "track_changes": true,
+    "keep_history": true,
+    "backup_location": "tests/data/backups/",
+    "max_backups": 30
+  }
+}

@@ -1,2 +1,12 @@
+# Playwright config
 .playwright-mcp
 
+# Swap files
+*.swp
+.CONTAINER.swp
+
+# Test files
+tests/
+
+# Documentation
+docs/
