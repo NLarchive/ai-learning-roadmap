@@ -114,7 +114,37 @@ const DataLoader = (() => {
       return cache.paths;
     }
 
-    cache.paths = await fetchWithFallback(config.pathsPath, config.legacyCareerPathsPath);
+    // Fetch the raw paths file. Older/newer generators may return
+    // either a plain mapping {trunk: {...}, ...} or a wrapper { meta: {...}, paths: { ... } }
+    const raw = await fetchWithFallback(config.pathsPath, config.legacyCareerPathsPath);
+
+    // Normalize: prefer raw.paths if present, otherwise assume raw is the mapping
+    const mapping = raw && raw.paths ? raw.paths : raw || {};
+
+    // Ensure every path has a 'stages' array expected by views (backwards compatibility)
+    for (const id of Object.keys(mapping)) {
+      const entry = mapping[id] || {};
+
+      // If the pipeline produced a simple count 'courses', try to keep compatibility
+      if (!Array.isArray(entry.stages)) {
+        // If the entry stores full course list as 'courses' (array), wrap it into one stage
+        if (Array.isArray(entry.courses)) {
+          entry.stages = [ { courses: entry.courses } ];
+        } else {
+          // Otherwise, create an empty stages array so views don't break.
+          entry.stages = [];
+        }
+      }
+
+      // If there is a 'courses' top-level array, also expose a hydrated field for lookup
+      if (Array.isArray(entry.courses) && !entry.coursesHydrated) {
+        entry.coursesHydrated = entry.courses.slice();
+      }
+
+      mapping[id] = entry;
+    }
+
+    cache.paths = mapping;
     return cache.paths;
   }
 

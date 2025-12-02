@@ -229,7 +229,9 @@ const NetworkView = (() => {
       nodes: {
         borderWidth: 2,
         shadow: { enabled: true, size: 5, x: 2, y: 2 },
-        color: { inherit: 'both' },
+        // vis-network expects boolean or allowed values for `inherit`; avoid invalid legacy strings.
+        // We explicitly disable global color inheritance since nodes are individually colored below.
+        color: { inherit: false },
         widthConstraint: { minimum: 30, maximum: 150 }
       },
       edges: {
