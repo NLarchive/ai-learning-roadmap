@@ -51,14 +51,17 @@ const DataLoader = (() => {
     try {
       const data = await fetchJSON(primaryPath);
       // Validate the data has actual content
-      if (data && data.courses && data.courses.length >= 50) {
+      if (data && data.courses && Array.isArray(data.courses) && data.courses.length >= 50) {
         return data;
       }
-      // For career paths format (trunk, builder, etc.)
-      if (data && data.trunk && data.trunk.courses) {
+      // For career paths format (trunk, builder, etc.) - must have array of courses or stages
+      if (data && data.trunk && Array.isArray(data.trunk.courses)) {
         return data;
       }
-      console.warn(`Primary ${primaryPath} has insufficient data, trying fallback...`);
+      if (data && data.builder && Array.isArray(data.builder.stages)) {
+        return data;
+      }
+      console.warn(`Primary ${primaryPath} has insufficient or invalid data, trying fallback...`);
       return await fetchJSON(fallbackPath);
     } catch (e) {
       console.warn(`Primary ${primaryPath} failed, trying fallback...`);

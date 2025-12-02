@@ -73,12 +73,14 @@ const TimelineView = (() => {
     let pathCourses = [];
     let stages = [];
 
-    if (pathId === 'trunk' && pathData.courses) {
+    // Handle trunk with courses array (legacy format)
+    if (pathId === 'trunk' && pathData.courses && Array.isArray(pathData.courses)) {
       pathCourses = pathData.courses.map(c => {
-        const full = courses.find(fc => fc.id === c.id);
-        return { ...c, ...full };
-      });
-    } else if (pathData.stages) {
+        const courseId = typeof c === 'string' ? c : c.id;
+        const full = courses.find(fc => fc.id === courseId);
+        return full ? { ...c, ...full } : null;
+      }).filter(Boolean);
+    } else if (pathData.stages && Array.isArray(pathData.stages)) {
       pathData.stages.forEach(stage => {
         const stageCourses = (stage.courses || []).map(courseId => {
           return courses.find(c => c.id === courseId);

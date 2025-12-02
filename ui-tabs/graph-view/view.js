@@ -202,9 +202,13 @@ const GraphView = (() => {
     const pathData = careerPaths[pathId];
     if (!pathData) return [];
     
-    if (pathId === 'trunk' && pathData.courses) {
-      return pathData.courses.map(c => courses.find(fc => fc.id === c.id)).filter(Boolean);
-    } else if (pathData.stages) {
+    // Handle trunk with courses array (legacy format)
+    if (pathId === 'trunk' && pathData.courses && Array.isArray(pathData.courses)) {
+      return pathData.courses.map(c => {
+        const courseId = typeof c === 'string' ? c : c.id;
+        return courses.find(fc => fc.id === courseId);
+      }).filter(Boolean);
+    } else if (pathData.stages && Array.isArray(pathData.stages)) {
       const result = [];
       pathData.stages.forEach(stage => {
         (stage.courses || []).forEach(courseId => {

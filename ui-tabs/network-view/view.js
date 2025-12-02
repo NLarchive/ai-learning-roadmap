@@ -229,7 +229,6 @@ const NetworkView = (() => {
       nodes: {
         borderWidth: 2,
         shadow: { enabled: true, size: 5, x: 2, y: 2 },
-        color: { inherit: 'both' },
         widthConstraint: { minimum: 30, maximum: 150 }
       },
       edges: {
