@@ -44,14 +44,25 @@ const DataLoader = (() => {
   }
 
   /**
-   * Try to load from new path, fallback to legacy
+   * Try to load from primary path, fallback to secondary
+   * Validates that data has actual content before accepting
    */
-  async function fetchWithFallback(newPath, legacyPath) {
+  async function fetchWithFallback(primaryPath, fallbackPath) {
     try {
-      return await fetchJSON(newPath);
+      const data = await fetchJSON(primaryPath);
+      // Validate the data has actual content
+      if (data && data.courses && data.courses.length >= 50) {
+        return data;
+      }
+      // For career paths format (trunk, builder, etc.)
+      if (data && data.trunk && data.trunk.courses) {
+        return data;
+      }
+      console.warn(`Primary ${primaryPath} has insufficient data, trying fallback...`);
+      return await fetchJSON(fallbackPath);
     } catch (e) {
-      console.warn(`New path ${newPath} failed, trying legacy...`);
-      return await fetchJSON(legacyPath);
+      console.warn(`Primary ${primaryPath} failed, trying fallback...`);
+      return await fetchJSON(fallbackPath);
     }
   }
 
@@ -63,7 +74,8 @@ const DataLoader = (() => {
       return cache.courses;
     }
 
-    const data = await fetchWithFallback(config.coursesPath, config.legacyCoursesPath);
+    // Use legacy file first as it has the complete course data (136 courses)
+    const data = await fetchWithFallback(config.legacyCoursesPath, config.coursesPath);
     
     // Store base URL for later use
     if (data.meta && data.meta.base_url) {
@@ -97,7 +109,9 @@ const DataLoader = (() => {
     }
 
     try {
-      cache.categories = await fetchJSON(config.categoriesPath);
+      const data = await fetchJSON(config.categoriesPath);
+      // Handle nested categories structure
+      cache.categories = data.categories || data;
     } catch (e) {
       // Fallback: extract from legacy courses-index.json
       const coursesData = await loadCourses();
@@ -114,37 +128,8 @@ const DataLoader = (() => {
       return cache.paths;
     }
 
-    // Fetch the raw paths file. Older/newer generators may return
-    // either a plain mapping {trunk: {...}, ...} or a wrapper { meta: {...}, paths: { ... } }
-    const raw = await fetchWithFallback(config.pathsPath, config.legacyCareerPathsPath);
-
-    // Normalize: prefer raw.paths if present, otherwise assume raw is the mapping
-    const mapping = raw && raw.paths ? raw.paths : raw || {};
-
-    // Ensure every path has a 'stages' array expected by views (backwards compatibility)
-    for (const id of Object.keys(mapping)) {
-      const entry = mapping[id] || {};
-
-      // If the pipeline produced a simple count 'courses', try to keep compatibility
-      if (!Array.isArray(entry.stages)) {
-        // If the entry stores full course list as 'courses' (array), wrap it into one stage
-        if (Array.isArray(entry.courses)) {
-          entry.stages = [ { courses: entry.courses } ];
-        } else {
-          // Otherwise, create an empty stages array so views don't break.
-          entry.stages = [];
-        }
-      }
-
-      // If there is a 'courses' top-level array, also expose a hydrated field for lookup
-      if (Array.isArray(entry.courses) && !entry.coursesHydrated) {
-        entry.coursesHydrated = entry.courses.slice();
-      }
-
-      mapping[id] = entry;
-    }
-
-    cache.paths = mapping;
+    // Use legacy career-paths.json first as it has the complete structured data
+    cache.paths = await fetchWithFallback(config.legacyCareerPathsPath, config.pathsPath);
     return cache.paths;
   }
 
@@ -203,10 +188,17 @@ const DataLoader = (() => {
     // Hydrate career paths with full course objects
     const hydratedPaths = {};
     for (const pathId in pathsData) {
+      // Skip non-path properties (like 'additional_paths')
+      if (pathId === 'additional_paths') {
+        hydratedPaths[pathId] = pathsData[pathId];
+        continue;
+      }
+      
       const path = pathsData[pathId];
       hydratedPaths[pathId] = { ...path };
 
       if (path.stages) {
+        // Path has stages format - hydrate course objects
         hydratedPaths[pathId].stages = path.stages.map(stage => ({
           ...stage,
           courses: (stage.courses || [])
@@ -215,8 +207,28 @@ const DataLoader = (() => {
         }));
       }
       
-      // For legacy format with courses array
-      if (path.courses && Array.isArray(path.courses)) {
+      // For legacy format with courses array (e.g., trunk)
+      // Convert to stages format for compatibility with views
+      if (path.courses && Array.isArray(path.courses) && !path.stages) {
+        // Group by stage property if available, otherwise single stage
+        const stageGroups = {};
+        path.courses.forEach(c => {
+          const stageId = typeof c === 'object' && c.stage ? c.stage : 'Courses';
+          if (!stageGroups[stageId]) {
+            stageGroups[stageId] = [];
+          }
+          const courseId = typeof c === 'string' ? c : c.id;
+          const courseObj = coursesMap.get(courseId);
+          if (courseObj) {
+            stageGroups[stageId].push(courseObj);
+          }
+        });
+        
+        hydratedPaths[pathId].stages = Object.entries(stageGroups).map(([name, courses]) => ({
+          name,
+          courses
+        }));
+        
         hydratedPaths[pathId].coursesHydrated = path.courses
           .map(c => typeof c === 'string' ? coursesMap.get(c) : coursesMap.get(c.id))
           .filter(Boolean);

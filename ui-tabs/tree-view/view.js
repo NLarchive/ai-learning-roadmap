@@ -84,28 +84,39 @@ const TreeView = (() => {
     const availableWidth = config.width - config.padding.left - config.padding.right;
     const branchSpacing = availableWidth / mainBranches.length;
 
-    // Level 0: Trunk
-      // Level 0: Trunk - flatten trunk stages into a linear set of trunk courses
-      let trunkCourses = [];
-      if (paths.trunk && Array.isArray(paths.trunk.stages)) {
+    // Level 0: Trunk - handle both formats:
+    // 1. stages: [{ courses: [...] }] (new format)
+    // 2. courses: [{ id: ... }] (legacy format with direct course objects)
+    let trunkCourses = [];
+    if (paths.trunk) {
+      if (Array.isArray(paths.trunk.stages)) {
+        // New format with stages
         trunkCourses = paths.trunk.stages.flatMap(stage => stage.courses || []);
+        trunkCourses = trunkCourses
+          .map(id => allCourses.find(c => c.id === id))
+          .filter(Boolean);
+      } else if (Array.isArray(paths.trunk.courses)) {
+        // Legacy format - courses is array of objects with id property
+        trunkCourses = paths.trunk.courses
+          .map(c => {
+            const courseId = typeof c === 'string' ? c : c.id;
+            return allCourses.find(course => course.id === courseId);
+          })
+          .filter(Boolean);
       }
-      // Map to actual course objects when available and keep stable ordering
-      trunkCourses = trunkCourses
-        .map(id => allCourses.find(c => c.id === id))
-        .filter(Boolean);
+    }
 
     let lastTrunkNode = null;
-      trunkCourses.forEach((courseTrunk, index) => {
-        const y = config.height - config.padding.bottom - (index * 40);
-        const node = {
-          id: courseTrunk.id,
-          level: 0,
-          x: config.width / 2,
-          y: y,
-          path: 'trunk',
-          order: courseTrunk.order || index + 1
-        };
+    trunkCourses.forEach((courseTrunk, index) => {
+      const y = config.height - config.padding.bottom - (index * 40);
+      const node = {
+        id: courseTrunk.id,
+        level: 0,
+        x: config.width / 2,
+        y: y,
+        path: 'trunk',
+        order: courseTrunk.order || index + 1
+      };
       nodes.push(node);
       if (lastTrunkNode) {
         edges.push({ source: lastTrunkNode, target: node, path: 'trunk' });
@@ -115,12 +126,15 @@ const TreeView = (() => {
 
     // Levels 1+: Main Branches and Stages
     mainBranches.forEach((pathKey, branchIndex) => {
+      const pathData = paths[pathKey];
+      if (!pathData || !pathData.stages) return;
+      
       const branchCenterX = config.padding.left + (branchIndex * branchSpacing) + (branchSpacing / 2);
       let lastStageNode = lastTrunkNode; // Connect first stage to the top of the trunk
 
-      paths[pathKey].stages.forEach((stage, stageIndex) => {
+      pathData.stages.forEach((stage, stageIndex) => {
         const level = stageIndex + 1;
-        const stageCourses = stage.courses;
+        const stageCourses = stage.courses || [];
         
         stageCourses.forEach((courseId, courseIndex) => {
           const course = allCourses.find(c => c.id === courseId);
